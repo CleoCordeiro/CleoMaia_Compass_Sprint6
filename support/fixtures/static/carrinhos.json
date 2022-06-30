@@ -1,0 +1,32 @@
+{
+    "sem_idProduto": {
+        "produtos": [
+            {
+                "quantidade": "1"
+            }
+        ]
+    },
+    "sem_quantidade": {
+        "produtos": [
+            {
+                "idProduto": "gKSDSHNEpR0p1qIp"
+            }
+        ]
+    },
+    "produto_invalido": {
+        "produtos": [
+            {
+                "idProduto": "NaoExisto",
+                "quantidade": "1"
+            }
+        ]
+    },
+    "quantidade_insuficiente": {
+        "produtos": [
+            {
+                "idProduto": "gKSDSHNEpR0p1qIp",
+                "quantidade": "9999999"
+            }
+        ]
+    }
+}

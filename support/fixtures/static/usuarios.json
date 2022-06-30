@@ -1,0 +1,29 @@
+{
+    "usuario_nao_cadastrado": {
+        "nome": "MaisFakeNotaDe3Reais",
+        "email": "NuncaSereiCadastrado@NaoExisto.com",
+        "password": "NaoExisto",
+        "administrador": "true"
+    },
+    "usuario_sem_nome": {
+        "email": "emailAleatorio234747@SuperRandominco.com",
+        "password": "SenhaAleatoria",
+        "administrador": "true"
+    },
+    "usuario_sem_email": {
+        "nome": "NomeAleatorio",
+        "password": "NaoExisto",
+        "administrador": "true"
+    },
+    "usuario_sem_senha": {
+        "nome": "NomeAleatorio",
+        "email": "NuncaSereiCadastrado@NaoExisto.com",
+        "administrador": "true"
+    },
+    "usuario_sem_administrador": {
+        "nome": "MaisFakeNotaDe3Reais",
+        "email": "NuncaSereiCadastrado@NaoExisto.com",
+        "password": "NaoExisto"
+    },
+    "usuario_id_invalido": "Invalido"
+}
