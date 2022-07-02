@@ -226,8 +226,8 @@ Cenario: Tentar Atualizar Produto Com Quantidade Invalida
 #    DELETE PRODUTOS    #
 #########################
 Cenario: Deletar Produto Cadastrado
-    [Tags]                                                                            DELETE                   Produtos    DELETE_Produtos    Deletar_Produto_Cadastrado
-    ${produto}=                                                                       Cadastar Novo Produto
+    [Tags]                                                                            DELETE             Produtos    DELETE_Produtos    Deletar_Produto_Cadastrado
+    Cadastar Novo Produto
     Logar E Salvar Token Como                                                         "Administrador"
     DELETE Autenticado EndPoint "/produtos/${produto['_id']}" Headers "${headers}"
     Validar Status Code "200"
@@ -241,15 +241,15 @@ Cenario: Tentar Deletar Produto Não Cadastrado
     Validar Mensagem "Nenhum registro excluído"
 
 Cenario: Tentar Deletar Produto Cadastrado Sem Autenticacao
-    [Tags]                                                                                                DELETE                   Produtos    DELETE_Produtos    Deletar_Produto_Sem_Autenticacao
-    ${produto}=                                                                                           Cadastar Novo Produto
+    [Tags]                                                                                                DELETE    Produtos    DELETE_Produtos    Deletar_Produto_Sem_Autenticacao
+    Cadastar Novo Produto
     DELETE Endpoint "/produtos/${produto['_id']}"
     Validar Status Code "401"
     Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
 
 Cenario: Tentar Deletar Produto Cadastrado Com Autenticacao De Nao Administrador
-    [Tags]                                                                            DELETE                   Produtos    DELETE_Produtos    Deletar_Produto_Nao Administrador
-    ${produto}=                                                                       Cadastar Novo Produto
+    [Tags]                                                                            DELETE                 Produtos    DELETE_Produtos    Deletar_Produto_Nao Administrador
+    Cadastar Novo Produto
     Logar E Salvar Token Como                                                         "Nao Administrador"
     DELETE Autenticado EndPoint "/produtos/${produto['_id']}" Headers "${headers}"
     Validar Status Code "403"

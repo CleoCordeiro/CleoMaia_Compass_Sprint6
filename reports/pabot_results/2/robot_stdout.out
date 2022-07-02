@@ -1,0 +1,437 @@
+==============================================================================
+Tests                                                                         
+==============================================================================
+Tests.03 Produtos Tests :: Arquivo De Testes Relacionandos Ao EndPoint Prod...
+==============================================================================
+Cenario: Listar Todos Os Produtos Cadastrados                           
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:12
+    T:  Cenario: Listar Todos Os Produtos Cadastrados    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:14
+      Cadastar Novo Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\produtos_keywords.resource:9
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Buscar Produto Cadastrado                                      
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:19
+    T:  Cenario: Buscar Produto Cadastrado    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:21
+      Cadastar Novo Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\produtos_keywords.resource:9
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Buscar Produto Nao Cadastrado                         | PASS |
+------------------------------------------------------------------------------
+Cenario: Cadastrar Produto Valido                                       
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:36
+    T:  Cenario: Cadastrar Produto Valido    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:39
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Cadastrar 20 Produtos                                          
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:45
+    T:  Cenario: Cadastrar 20 Produtos    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:47
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastrar Produto Valido Nao Administrador              
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:56
+    T:  Cenario: Tentar Cadastrar Produto Valido Nao Administrador    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:59
+      Logar E Salvar Token Como    "Nao Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastar Produto Nao Autenticado                      | PASS |
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastrar Produto Com Token Invalido                  | PASS |
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastrar Produto Ja Cadastrado                         
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:78
+    T:  Cenario: Tentar Cadastrar Produto Ja Cadastrado    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:82
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastar Produto Com Nome Vazio                         
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:87
+    T:  Cenario: Tentar Cadastar Produto Com Nome Vazio    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:90
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastar Produto Com Preco Vazio                        
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:95
+    T:  Cenario: Tentar Cadastar Produto Com Preco Vazio    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:98
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastar Produto Com Preco Invalido                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:103
+    T:  Cenario: Tentar Cadastar Produto Com Preco Invalido    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:106
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastar Produto Com Descricao Vazia                    
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:111
+    T:  Cenario: Tentar Cadastar Produto Com Descricao Vazia    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:114
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastar Produto Com Quantidade Vazia                   
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:119
+    T:  Cenario: Tentar Cadastar Produto Com Quantidade Vazia    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:122
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Cadastrar Produto Com A Quantidade Invalida             
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:127
+    T:  Cenario: Tentar Cadastrar Produto Com A Quantidade Invalida    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:130
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Atualizar Produto Não Cadastrado                               
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:138
+    T:  Cenario: Atualizar Produto Não Cadastrado    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:141
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Atualizar Nome do Produto                                      
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:147
+    T:  Cenario: Atualizar Nome do Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:150
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Atualizar Descrição do Produto                                 
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:155
+    T:  Cenario: Atualizar Descrição do Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:158
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Atualizar Preço do Produto                                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:163
+    T:  Cenario: Atualizar Preço do Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:166
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Atualizar Quantidade do Produto                                
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:171
+    T:  Cenario: Atualizar Quantidade do Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:174
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Atualizar Produto Cadastrado Sem Autenticacao         | PASS |
+------------------------------------------------------------------------------
+Cenario: Tentar Atualizar Produto Autenticado Como Nao Administrador    
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:187
+    T:  Cenario: Tentar Atualizar Produto Autenticado Como Nao Administrador    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:190
+      Logar E Salvar Token Como    "Nao Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Atualizar Produto Cadastrado Com Token Invalido       | PASS |
+------------------------------------------------------------------------------
+Cenario: Tentar Atualizar Produto Sem Alteracao                         
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:202
+    T:  Cenario: Tentar Atualizar Produto Sem Alteracao    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:205
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Atualizar Produto Com Preco Invalido                    
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:210
+    T:  Cenario: Tentar Atualizar Produto Com Preco Invalido    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:213
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Atualizar Produto Com Quantidade Invalida               
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:218
+    T:  Cenario: Tentar Atualizar Produto Com Quantidade Invalida    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:221
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Deletar Produto Cadastrado                                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:228
+    T:  Cenario: Deletar Produto Cadastrado    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:230
+      Cadastar Novo Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\produtos_keywords.resource:9
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Deletar Produto Não Cadastrado                          
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:236
+    T:  Cenario: Tentar Deletar Produto Não Cadastrado    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:238
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Deletar Produto Cadastrado Sem Autenticacao             
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:243
+    T:  Cenario: Tentar Deletar Produto Cadastrado Sem Autenticacao    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:245
+      Cadastar Novo Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\produtos_keywords.resource:9
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentar Deletar Produto Cadastrado Com Autenticacao De Nao...   
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:250
+    T:  Cenario: Tentar Deletar Produto Cadastrado Com Autenticacao De Nao Administrador    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\03_produtos_tests.robot:252
+      Cadastar Novo Produto    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\produtos_keywords.resource:9
+      Logar E Salvar Token Como    "Administrador"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\login_keywords.resource:18
+      Remove From Dictionary    ${usuario_valido}    nome    administrador    _id
+      |  ${usuario_valido} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Tests.03 Produtos Tests :: Arquivo De Testes Relacionandos Ao EndP... | FAIL |
+30 tests, 5 passed, 25 failed
+==============================================================================
+Tests                                                                 | FAIL |
+30 tests, 5 passed, 25 failed
+==============================================================================
+Output:  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\reports\pabot_results\2\output.xml

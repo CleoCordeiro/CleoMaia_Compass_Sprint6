@@ -10,43 +10,43 @@ Suite Setup      Criar Sessao
 #    GET LOGIN    #
 ###################
 Cenario: Realizar Login Com Sucesso Administrador
-    [Tags]                                                 POST                      Login              Login_Administrador
-    ${usuario_valido} =                                    Cadastrar Novo Usuario    "Administrador"
-    Remove From Dictionary                                 ${usuario_valido}         nome               administrador          _id
+    [Tags]                                                 POST               Login    Login_Administrador
+    Cadastrar Novo Usuario                                 "Administrador"
+    Pegar Dados Para Login "${usuario_valido}"
     POST Endpoint "/login" Com Body "${usuario_valido}"
     Validar Status Code "200"
     Validar Mensagem "Login realizado com sucesso"
     Validar Token
 
 Cenario: Realizar Login Com Sucesso Usuario Nao Administrador
-    [Tags]                                                 POST                      Login                  Login_Nao_Administrador
-    ${usuario_valido} =                                    Cadastrar Novo Usuario    "Nao Administrador"
-    Remove From Dictionary                                 ${usuario_valido}         nome                   administrador              _id
+    [Tags]                                                 POST                   Login    Login_Nao_Administrador
+    Cadastrar Novo Usuario                                 "Nao Administrador"
+    Pegar Dados Para Login "${usuario_valido}"
     POST Endpoint "/login" Com Body "${usuario_valido}"
     Validar Status Code "200"
     Validar Mensagem "Login realizado com sucesso"
     Validar Token
 
-Cenario: Tentativa De Login Com Usuario Invalido
-    [Tags]                                                   POST                                  Login              Login_Usuario_Invalido
-    ${usuario_invalido} =                                    Criar Dados Usuario Valido Do Tipo    "Administrador"
-    Remove From Dictionary                                   ${usuario_invalido}                   nome               administrador             _id
-    POST Endpoint "/login" Com Body "${usuario_invalido}"
+Cenario: Tentativa De Login Com Usuario Nao Cadastrado
+    [Tags]                                                         POST             Login                     Login_Usuario_Nao_Cadastrado
+    Pegar Key Do Json                                              usuarios.json    usuario_nao_cadastrado    
+    Pegar Dados Para Login "${usuario_nao_cadastrado}"
+    POST Endpoint "/login" Com Body "${usuario_nao_cadastrado}"
     Validar Status Code "401"
     Validar Mensagem "Email e/ou senha inválidos"
 
 Cenario: Tentativa De Login Sem Email
-    [Tags]                                                 POST                                  Login              POST_Login       Login_Usuario_Email
-    ${usuario_valido} =                                    Criar Dados Usuario Valido Do Tipo    "Administrador"
-    Remove From Dictionary                                 ${usuario_valido}                     nome               administrador    _id                    email
-    POST Endpoint "/login" Com Body "${usuario_valido}"
+    [Tags]                                                    POST             Login                POST_Login    Login_Usuario_Email
+    Pegar Key Do Json                                         usuarios.json    usuario_sem_email
+    Pegar Dados Para Login "${usuario_sem_email}"
+    POST Endpoint "/login" Com Body "${usuario_sem_email}"
     Validar Status Code "400"
     Validar "email" Com O Valor "email é obrigatório"
 
 Cenario: Tentativa De Login Sem Senha
-    [Tags]                                                     POST                                  Login              POST_Login       Login_Usuario_Senha
-    ${usuario_valido} =                                        Criar Dados Usuario Valido Do Tipo    "Administrador"
-    Remove From Dictionary                                     ${usuario_valido}                     nome               administrador    _id                    password
-    POST Endpoint "/login" Com Body "${usuario_valido}"
+    [Tags]                                                     POST             Login                POST_Login    Login_Usuario_Senha
+    Pegar Key Do Json                                          usuarios.json    usuario_sem_senha
+    Pegar Dados Para Login "${usuario_sem_senha}"
+    POST Endpoint "/login" Com Body "${usuario_sem_senha}"
     Validar Status Code "400"
     Validar "password" Com O Valor "password é obrigatório"

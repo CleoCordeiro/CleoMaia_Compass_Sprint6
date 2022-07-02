@@ -19,7 +19,7 @@
 ## Instalação
 
 - Instalar o Python
-- Instalar as dependências do Robot Framework: `python -m pip install -r requirements.txt`
+- Instalar as dependências do Robot Framework: `pip install -r requirements.txt`
 
 ## Bibliotecas externas utilizadas
 

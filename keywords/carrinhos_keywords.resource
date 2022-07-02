@@ -11,13 +11,13 @@ Pegar Carrinho Cadastrado
     [Return]                    ${carrinho}
 
 Cadastrar Novo Carrinho
-    ${carrinho} =                                                                         Criar Dados Carrinho Valido
+    Criar Dados Carrinho Valido
     Logar E Salvar Token Como                                                             "Administrador"
     POST Autenticado EndPoint "/carrinhos" Com Body "${carrinho}" Headers "${headers}"
     Validar Status Code "201"
     Validar Mensagem "Cadastro realizado com sucesso"
     Validar Se A Key Nao Esta Vazia "_id"
-    [Return]                                                                              ${response_body}
+
 
 Pegar Json Carrinho Com a Key "${key}"
     ${carrinho}    Importar JSON            carrinho.json

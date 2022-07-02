@@ -12,7 +12,7 @@ Cadastar Novo Produto
     Validar Status Code "201"
     Validar Se A Key Nao Esta Vazia "_id"
     Set to Dictionary                                                                   ${produto}            _id=${response_body['_id']}
-    [Return]                                                                            ${produto}
+    Set Test Variable                                                                   ${produto}
 
 Lista De Todos Produtos
     GET Endpoint "/produtos"
@@ -34,6 +34,7 @@ Gerar Novo Produto
     ${quantidade} =    FakerLibrary.Random Int    min=300             max=1000
     &{produto} =       Create Dictionary          nome=${nome}        descricao=${descricao}    preco=${preco}    quantidade=${quantidade}
     [Return]           ${produto}
+
 
 Pegar Produto Do JSON Sem O Campo "${parametro}"
     ${produto} =              Pegar Produto Cadastrado

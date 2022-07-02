@@ -16,10 +16,11 @@ Importar JSON
     [return]       ${payload}
 
 Pegar Key Do Json
-    [Documentation]    Necessita de 2 argumentos o primeiro é o json e o segundo é a chave que deseja pegar
-    [Arguments]        ${arquivo}                                                                              ${key}
-    ${carrinho}        Importar JSON                                                                           ${arquivo}
-    [Return]           ${carrinho['${key}']}
+       [Documentation]                           Necessita de 2 argumentos o primeiro é o json
+...    e o segundo é a chave que deseja pegar
+       [Arguments]                               ${arquivo}                                       ${key}
+       ${json}                                   Importar JSON                                    ${arquivo}           
+       Set Test Variable                         ${${key}}                                        ${json['${key}']}
 
 Criar Sessao
     Create Session    serverest    ${BASE_URI}    verify=true

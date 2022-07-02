@@ -17,26 +17,29 @@ Cadastrar Novo Usuario
     ...                                                  - "Administrador"
     ...                                                  - "Nao Administrador"
     [Arguments]                                          ${tipo}= Nao Administrador
-    ${usuario} =                                         Criar Dados Usuario Valido Do Tipo                                                ${tipo}
+    Criar Dados Usuario Valido Do Tipo                   ${tipo}
     POST Endpoint "/usuarios" Com Body "${usuario}"
     Validar Status Code "201"
     Validar Mensagem "Cadastro realizado com sucesso"
     Should Not Be Empty                                  ${response_body['_id']}
     Set To Dictionary                                    ${usuario}                                                                        _id=${response_body['_id']}
-    [Return]                                             ${usuario}
+    Set Test Variable                                    ${usuario_valido}                                                                 ${usuario}
 
-Alterar "${key}" Do Usuario "${usuario}"
-    ${novo_usuario} =    Criar Dados Usuario Valido Do Tipo    "Nao Administrador"
-    set to dictionary    ${usuario}                            ${key}=${novo_usuario.${key}}
-    [Return]             ${usuario}
+Alterar Nome Do Usuario
+    ${novo_nome}         FakerLibrary.Name
+    set to dictionary    ${usuario}           nome=${novo_nome}
 
-Alterar Privilegio do Usuario "${usuario}"
-    ${administrador}=     Convert To Title Case    ${usuario['administrador']}
-    ${administrador} =    Evaluate                 ${administrador}== False
-    ${administrador} =    Convert To String        ${administrador}
-    ${administrador} =    Convert To Lower Case    ${administrador}
-    set to dictionary     ${usuario}               administrador=${administrador}
-    [Return]              ${usuario}
+Alterar Email Do Usuario
+    ${novo_email}        FakerLibrary.Email
+    set to dictionary    ${usuario}            email=${novo_email}
+
+Alterar Senha Do Usuario
+    ${novo_senha}        FakerLibrary.Password
+    set to dictionary    ${usuario}               password=${novo_senha}
+
+Alternar Tipo Do Usuario
+    Run Keyword If    "${usuario['administrador']}" == """true"""     Set To Dictionary    ${usuario}    administrador=false
+    Run Keyword If    "${usuario['administrador']}" == """false"""    Set To Dictionary    ${usuario}    administrador=true
 
 Validar Usuario "${id_usuario_cadastrado}"
     Should Be Equal    ${response_body['_id']}    ${id_usuario_cadastrado}

@@ -6,20 +6,20 @@ Library          FakerLibrary
 
 *** Keywords ***
 Criar Dados Usuario Valido Do Tipo
-    [Documentation]     Aceita como argumento um tipo de usuário e retorna um usuário do tipo desejado
-    ...                 Se não for passado um tipo de usuário, retorna um usuario Não Administrador
-    ...                 Tipos de usuario Aceitos:
-    ...                 - "Administrador"
-    ...                 - "Nao Administrador"
-    [Arguments]         ${tipo}= Nao Administrador
-    ${nome}             FakerLibrary.Name
-    ${email}            FakerLibrary.Email
-    ${word}             FakerLibrary.Word
-    ${email}            Catenate                                                                          SEPARATOR=                    ${word}           ${email}             
-    ${senha}            FakerLibrary.Password
-    ${administrador}    Set Variable If                                                                   ${tipo} == "Administrador"    true              false
-    &{usuario}          Create Dictionary                                                                 nome=${nome}                  email=${email}    password=${senha}    administrador=${administrador}
-    [Return]            ${usuario}
+    [Documentation]      Aceita como argumento um tipo de usuário e retorna um usuário do tipo desejado
+    ...                  Se não for passado um tipo de usuário, retorna um usuario Não Administrador
+    ...                  Tipos de usuario Aceitos:
+    ...                  - "Administrador"
+    ...                  - "Nao Administrador"
+    [Arguments]          ${tipo}= Nao Administrador
+    ${nome}              FakerLibrary.Name
+    ${email}             FakerLibrary.Email
+    ${word}              FakerLibrary.Word
+    ${email}             Catenate                                                                          SEPARATOR=                    ${word}           ${email}             
+    ${senha}             FakerLibrary.Password
+    ${administrador}     Set Variable If                                                                   ${tipo} == "Administrador"    true              false
+    &{usuario}           Create Dictionary                                                                 nome=${nome}                  email=${email}    password=${senha}    administrador=${administrador}
+    Set Test Variable    ${usuario}
 
 
 Criar Dados Produto Valido
@@ -50,4 +50,4 @@ Criar Dados Carrinho Valido
     Append To List                 ${nova_lista_produtos}                                                         ${novo_produto}
     END
     ${carrinho}=                   Add Object To Json                                                             ${carrinho}                    $.produtos                          ${nova_lista_produtos}
-    [Return]                       ${carrinho}
+    Set Test Variable              ${carrinho}

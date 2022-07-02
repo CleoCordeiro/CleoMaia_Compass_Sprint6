@@ -1,0 +1,212 @@
+==============================================================================
+Tests                                                                         
+==============================================================================
+Tests.02 Usuarios Tests :: Arquivo De Testes Relacionandos Ao EndPoint Usua...
+==============================================================================
+Cenario: Listar Todos Os Usuarios Cadastrados                         | PASS |
+------------------------------------------------------------------------------
+Cenario: Buscar Usuario Por ID Valido Nao Administrador                 
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:19
+    T:  Cenario: Buscar Usuario Por ID Valido Nao Administrador    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:22
+      GET Endpoint "/usuarios/${usuario_valido['_id']}"    
+______________________________________________________________________________
+| FAIL |
+Resolving variable '${usuario_valido['_id']}' failed: TypeError: 'NoneType' object is not subscriptable
+------------------------------------------------------------------------------
+Cenario: Buscar Usuario Por ID Valido Administrador                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:26
+    T:  Cenario: Buscar Usuario Por ID Valido Administrador    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:29
+      GET Endpoint "/usuarios/${usuario_valido['_id']}"    
+______________________________________________________________________________
+| FAIL |
+Resolving variable '${usuario_valido['_id']}' failed: TypeError: 'NoneType' object is not subscriptable
+------------------------------------------------------------------------------
+Cenario: Buscar Usuario Por Id Invalido                               | PASS |
+------------------------------------------------------------------------------
+Cenario: Cadastrar Um Usuario Administrador Com Sucesso               | PASS |
+------------------------------------------------------------------------------
+Cenario: Cadastrar Um Usuario Nao Administrador Com Sucesso           | PASS |
+------------------------------------------------------------------------------
+Cenario: Tentativa de Cadastrar Um Usuario Com Email Ja Cadastrado      
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:58
+    T:  Cenario: Tentativa de Cadastrar Um Usuario Com Email Ja Cadastrado    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:61
+      POST Endpoint "/usuarios" Com Body "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\support\common\common.resource:33
+      Run Keyword If    '_id' in ${body}    Remove From Dictionary    ${body}    _id
+      |  '_id' in ${body} = '_id' in None (str)
+      |  ${body} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+Evaluating expression ''_id' in None' failed: TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentativa de Cadastrar Um Usuario Sem Nome                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:66
+    T:  Cenario: Tentativa de Cadastrar Um Usuario Sem Nome    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:69
+      POST Endpoint "/usuarios" Com Body "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\support\common\common.resource:33
+      Run Keyword If    '_id' in ${body}    Remove From Dictionary    ${body}    _id
+      |  '_id' in ${body} = '_id' in None (str)
+      |  ${body} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+Evaluating expression ''_id' in None' failed: TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentativa de Cadastrar Um Usuario Sem Email                    
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:73
+    T:  Cenario: Tentativa de Cadastrar Um Usuario Sem Email    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:76
+      POST Endpoint "/usuarios" Com Body "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\support\common\common.resource:33
+      Run Keyword If    '_id' in ${body}    Remove From Dictionary    ${body}    _id
+      |  '_id' in ${body} = '_id' in None (str)
+      |  ${body} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+Evaluating expression ''_id' in None' failed: TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentativa de Cadastrar Um Usuario Sem Senha                    
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:80
+    T:  Cenario: Tentativa de Cadastrar Um Usuario Sem Senha    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:83
+      POST Endpoint "/usuarios" Com Body "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\support\common\common.resource:33
+      Run Keyword If    '_id' in ${body}    Remove From Dictionary    ${body}    _id
+      |  '_id' in ${body} = '_id' in None (str)
+      |  ${body} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+Evaluating expression ''_id' in None' failed: TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenario: Tentativa de Cadastrar Um Usuario Sem Administrador            
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:87
+    T:  Cenario: Tentativa de Cadastrar Um Usuario Sem Administrador    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:90
+      POST Endpoint "/usuarios" Com Body "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\support\common\common.resource:33
+      Run Keyword If    '_id' in ${body}    Remove From Dictionary    ${body}    _id
+      |  '_id' in ${body} = '_id' in None (str)
+      |  ${body} = None (NoneType)
+______________________________________________________________________________
+| FAIL |
+Evaluating expression ''_id' in None' failed: TypeError: argument of type 'NoneType' is not iterable
+------------------------------------------------------------------------------
+Cenerario: Atualizar Dados de Um Usuario Nao Cadastrado               | PASS |
+------------------------------------------------------------------------------
+Cenario: Atualizar Nome Do Usuario                                      
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:105
+    T:  Cenario: Atualizar Nome Do Usuario    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:108
+      Alterar "nome" Do Usuario "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\usuarios_keywords.resource:30
+      Set To Dictionary    ${usuario}    ${key}=${novo_usuario.${key}}
+      |  ${usuario} = None (NoneType)
+      |  ${key}=${novo_usuario.${key}} = nome=Brian Preston (str)
+______________________________________________________________________________
+| FAIL |
+AttributeError: 'NoneType' object has no attribute 'update'
+------------------------------------------------------------------------------
+Cenario: Atualizar Email Do Usuario                                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:113
+    T:  Cenario: Atualizar Email Do Usuario    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:116
+      Alterar "email" Do Usuario "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\usuarios_keywords.resource:30
+      Set To Dictionary    ${usuario}    ${key}=${novo_usuario.${key}}
+      |  ${usuario} = None (NoneType)
+      |  ${key}=${novo_usuario.${key}} = email=banklinmary@example.net (str)
+______________________________________________________________________________
+| FAIL |
+AttributeError: 'NoneType' object has no attribute 'update'
+------------------------------------------------------------------------------
+Cenario: Atualizar Senha Do Usuario                                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:121
+    T:  Cenario: Atualizar Senha Do Usuario    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:124
+      Alterar "password" Do Usuario "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\usuarios_keywords.resource:30
+      Set To Dictionary    ${usuario}    ${key}=${novo_usuario.${key}}
+      |  ${usuario} = None (NoneType)
+      |  ${key}=${novo_usuario.${key}} = password=(C6QMeCoH* (str)
+______________________________________________________________________________
+| FAIL |
+AttributeError: 'NoneType' object has no attribute 'update'
+------------------------------------------------------------------------------
+Cenario: Atualizar Privelio Do Usuario                                  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:129
+    T:  Cenario: Atualizar Privelio Do Usuario    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:132
+      Alterar Privilegio do Usuario "${usuario}"    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\keywords\usuarios_keywords.resource:34
+      Convert To Title Case    ${usuario['administrador']}
+      |  ${usuario['administrador']} = <Unable to define variable value>
+______________________________________________________________________________
+| FAIL |
+Resolving variable '${usuario['administrador']}' failed: TypeError: 'NoneType' object is not subscriptable
+------------------------------------------------------------------------------
+Cenario: Deletar Usuario Cadastrado                                     
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:140
+    T:  Cenario: Deletar Usuario Cadastrado    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\tests\02_usuarios_tests.robot:143
+      DELETE Endpoint "/usuarios/${usuario['_id']}"    
+______________________________________________________________________________
+| FAIL |
+Resolving variable '${usuario['_id']}' failed: TypeError: 'NoneType' object is not subscriptable
+------------------------------------------------------------------------------
+Cenario: Deletar Usuario Nao Cadastrado                               | PASS |
+------------------------------------------------------------------------------
+Tests.02 Usuarios Tests :: Arquivo De Testes Relacionandos Ao EndP... | FAIL |
+18 tests, 6 passed, 12 failed
+==============================================================================
+Tests                                                                 | FAIL |
+18 tests, 6 passed, 12 failed
+==============================================================================
+Output:  C:\Users\Cleo\Documents\Python\CleoMaia_Compass_Sprint6\reports\pabot_results\1\output.xml
