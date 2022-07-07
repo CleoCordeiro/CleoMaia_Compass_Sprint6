@@ -2,4 +2,4 @@ robotframework
 robotframework-requests
 robotframework-faker
 robotframework-jsonlibrary
-robotframework-pabot
+requests

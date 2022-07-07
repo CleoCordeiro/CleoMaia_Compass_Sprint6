@@ -10,23 +10,23 @@ Suite Setup      Criar Sessao
 #    GET CARRINHOS    #
 #######################
 Cenario: Listar Todos Os Carrinhos Cadastrados
-    [Tags]                                 GET    Carrinhos    GET_Carrinhos    Buscar_Todos_Carrinhos
+    [Tags]                                        GET    Carrinhos    GET_Carrinhos    Buscar_Todos_Carrinhos
     Cadastrar Novo Carrinho
-    Get Endpoint "/carrinhos"
+    Custom On Session                             GET    Carrinhos
     Validar Status Code "200"
-    Validar Quantidade De Carrinhos > 0
+    Validar Se A Quantidade De Carrinhos E > 0
 
 Cenario: Buscar Carrinho Cadastrado
-    [Tags]                                                                                                                                                                     GET    Carrinhos    GET_Carrinhos    Buscar_Carrinho_Cadastrado
+    [Tags]                                        GET    Carrinhos                                                                                                                                                   GET_Carrinhos    Buscar_Carrinho_Cadastrado
     Cadastrar Novo Carrinho
     Pegar Carrinho Cadastrado
-    Get Endpoint "/carrinhos?_id=${carrinho['_id']}&precoTotal=${carrinho['precoTotal']}&quantidadeTotal=${carrinho['quantidadeTotal']}&idUsuario=${carrinho['idUsuario']}"
+    Custom On Session                             GET    Carrinhos?_id=${carrinho['_id']}&precoTotal=${carrinho['precoTotal']}&quantidadeTotal=${carrinho['quantidadeTotal']}&idUsuario=${carrinho['idUsuario']}"
     Validar Status Code "200"
-    Validar Quantidade De Carrinhos > 0
+    Validar Se A Quantidade De Carrinhos E > 0
 
 Cenario: Tentar Buscar Carrinho Nao Cadastrado
-    [Tags]                                        GET    Carrinhos    GET_Carrinhos    Buscar_Carrinho_Nao_Cadastrado
-    Get Endpoint "/carrinhos/NaoCadastrado"
+    [Tags]                                        GET    Carrinhos                  GET_Carrinhos    Buscar_Carrinho_Nao_Cadastrado
+    Custom On Session                             GET    Carrinhos/NaoCadastrado
     Validar Status Code "400"
     Validar Mensagem "Carrinho não encontrado"
 
@@ -72,33 +72,33 @@ Cenario: Tentar Cadastrar Mais de Um Carrinho
     Validar Mensagem "Não é permitido ter mais de 1 carrinho"
 
 Cenraio: Tentar Cadastrar Carrinho Com Produto Invalido
-    [Tags]                                                                                GET                    Carrinhos           POST_Carrinhos    Cadastrar_Carrinho_Produto_Invalido
-    Pegar Key Do Json                                                                     carrinhos.json         produto_invalido
-    Logar E Salvar Token Como                                                             "Nao Administrador"
+    [Tags]                                                                                        GET                    Carrinhos           POST_Carrinhos    Cadastrar_Carrinho_Produto_Invalido
+    Pegar Key Do Json                                                                             carrinhos.json         produto_invalido
+    Logar E Salvar Token Como                                                                     "Nao Administrador"
     POST Autenticado EndPoint "/carrinhos" Com Body "${produto_invalido}" Headers "${headers}"
     Validar Status Code "400"
     Validar Mensagem "Produto não encontrado"
 
 Cenario: Tentar Cadastrar Carrinho Com Quantidade Insuficiente
-    [Tags]                                                                                GET                    Carrinhos                  POST_Carrinhos    Cadastrar_Carrinho_Quantidade_Insuficiente
-    Pegar Key Do Json                                                                     carrinhos.json         quantidade_insuficiente
+    [Tags]                                                                                GET                    Carrinhos    POST_Carrinhos    Cadastrar_Carrinho_Quantidade_Insuficiente
+    Carrinho Com Produto Sem Quantidade Suficiente
     Logar E Salvar Token Como                                                             "Nao Administrador"
-    POST Autenticado EndPoint "/carrinhos" Com Body "${quantidade_insuficiente}" Headers "${headers}"
+    POST Autenticado EndPoint "/carrinhos" Com Body "${carrinho}" Headers "${headers}"
     Validar Status Code "400"
     Validar Mensagem "Produto não possui quantidade suficiente"
 
 Cenario: Tentar Cadastrar Carrinho Invalido Sem idProduto
-    [Tags]                                                                                GET                Carrinhos        POST_Carrinhos    Cadastrar_Carrinho_Sem_idProduto
-    Pegar Key Do Json                                                                     carrinhos.json     sem_idProduto
-    Logar E Salvar Token Como                                                             "Administrador"
+    [Tags]                                                                                     GET                Carrinhos        POST_Carrinhos    Cadastrar_Carrinho_Sem_idProduto
+    Pegar Key Do Json                                                                          carrinhos.json     sem_idProduto
+    Logar E Salvar Token Como                                                                  "Administrador"
     POST Autenticado EndPoint "/carrinhos" Com Body "${sem_idProduto}" Headers "${headers}"
     Validar Status Code "400"
     Validar "produtos" Com O Valor "produtos não contém 1 valor obrigatório"
 
 Cenario: Tentar Cadastrar Carrinho Invalido Sem Quantidade
-    [Tags]                                                                                GET                Carrinhos         POST_Carrinhos    Cadastrar_Carrinho_Sem_Quantidade
-    Pegar Key Do Json                                                                     carrinhos.json     sem_quantidade
-    Logar E Salvar Token Como                                                             "Administrador"
+    [Tags]                                                                                      GET                Carrinhos         POST_Carrinhos    Cadastrar_Carrinho_Sem_Quantidade
+    Pegar Key Do Json                                                                           carrinhos.json     sem_quantidade
+    Logar E Salvar Token Como                                                                   "Administrador"
     POST Autenticado EndPoint "/carrinhos" Com Body "${sem_quantidade}" Headers "${headers}"
     Validar Status Code "400"
     Validar "produtos" Com O Valor "produtos não contém 1 valor obrigatório"

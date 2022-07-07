@@ -6,7 +6,7 @@ Resource         ../support/base.resource
 #Sessão para criação de keywords
 *** Keywords ***
 Pegar Carrinho Cadastrado
-    GET Endpoint "carrinhos"
+    Custom On Session           GET            Carrinhos
     Set Test Variable           ${carrinho}    ${response_body['carrinhos'][-1]}
     [Return]                    ${carrinho}
 
@@ -18,7 +18,9 @@ Cadastrar Novo Carrinho
     Validar Mensagem "Cadastro realizado com sucesso"
     Validar Se A Key Nao Esta Vazia "_id"
 
-
-Pegar Json Carrinho Com a Key "${key}"
-    ${carrinho}    Importar JSON            carrinho.json
-    [Return]       ${carrinho['${key}']}
+Carrinho Com Produto Sem Quantidade Suficiente
+    Custom On Session       GET                  Produtos
+    ${produto} =            Create Dictionary    idProduto=${response_body['produtos'][-1]['_id']}    quantidade=99999
+    @{lista_de_produtos}    Create List          ${produto}
+    ${carrinho} =           Create Dictionary    produtos=${lista_de_produtos}
+    Set Test Variable       ${carrinho}

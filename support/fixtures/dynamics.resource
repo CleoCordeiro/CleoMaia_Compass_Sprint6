@@ -21,15 +21,34 @@ Criar Dados Usuario Valido Do Tipo
     &{usuario}           Create Dictionary                                                                 nome=${nome}                  email=${email}    password=${senha}    administrador=${administrador}
     Set Test Variable    ${usuario}
 
+Criar Dados Usuario Nome Com Acentos
+    [Documentation]                       Aceita como argumento um tipo de usuário e retorna um usuário do tipo desejado
+    ...                                   Se não for passado um tipo de usuário, retorna um usuario Não Administrador
+    ...                                   Tipos de usuario Aceitos:
+    ...                                   - "Administrador"
+    ...                                   - "Nao Administrador"
+    [Arguments]                           ${tipo}= Nao Administrador
+    Criar Dados Usuario Valido Do Tipo    ${tipo}
+    Pegar Key Do Json                     acentos.json                                                                      acentos
+    ${novo_nome_com_acentos}              Catenate                                                                          SEPARATOR=                       ${acentos}    ${usuario['nome']}
+    Set To Dictionary                     ${usuario}                                                                        nome=${novo_nome_com_acentos}
 
 Criar Dados Produto Valido
-    [Documentation]    Gera um produto aleatório e retorna um dicionário com os dados do produto
-    ${nome} =          FakerLibrary.Text                                                            max_nb_chars=30
-    ${descricao} =     FakerLibrary.Text                                                            max_nb_chars=100
-    ${preco} =         FakerLibrary.Random Int                                                      min=100             max=4000
-    ${quantidade} =    FakerLibrary.Random Int                                                      min=300             max=1000
-    &{produto} =       Create Dictionary                                                            nome=${nome}        descricao=${descricao}    preco=${preco}    quantidade=${quantidade}
-    [Return]           ${produto}
+    ${produto} =         Criar Dados Produto
+    Set Test Variable    ${produto}
+
+Criar Dados Lista De Produto
+    [Documentation]           Recebe a quantidade de produtos que serão criados e cria a variável lista_de_produtos
+    ...                       Se não for passado nenhuma quantidade, cria a variável lista_de_produtos com quantidade de 1
+    [Arguments]               ${quantidade}= 1
+    ${lista_de_produtos} =    Criar Dados Produto                                                                             ${quantidade}
+    Set Test Variable         ${lista_de_produtos}
+
+Criar Dados Produto Nome Com Acentos
+    Criar Dados Produto Valido
+    Pegar Key Do Json             acentos.json    acentos
+    ${novo_nome_com_acentos}      Catenate        SEPARATOR=                       ${acentos}    ${produto['nome']}
+    Set To Dictionary             ${produto}      nome=${novo_nome_com_acentos}
 
 
 Criar Dados Carrinho Valido
@@ -37,17 +56,17 @@ Criar Dados Carrinho Valido
     ${produtos} =                  Lista De Todos Produtos
     Set Test Variable              ${lista_de_produtos}                                                           ${produtos['produtos']}
     ${quantidade_de_produtos} =    Get length                                                                     ${lista_de_produtos}
-    ${quantidade_aleatoria}        FakerLibrary.Random Int                                                        min=1                          max=10
+    ${quantidade_aleatoria}        FakerLibrary.Random Int                                                        min=1                              max=10
     @{nova_lista_produtos}         Create List
     ${carrinho}=                   Create Dictionary
-    FOR                            ${i}                                                                           IN RANGE                       ${quantidade_aleatoria}
+    FOR                            ${i}                                                                           IN RANGE                           ${quantidade_aleatoria}
     ${quantidade_de_produtos} =    Get length                                                                     ${lista_de_produtos}
-    ${index_produto}               FakerLibrary.Random Int                                                        min=0                          max=${quantidade_de_produtos-1 }
-    ${produto} =                   Remove From List                                                               ${lista_de_produtos}           ${index_produto}
-    IF                             ${produto['quantidade']} <= 0                                                  CONTINUE
-    ${quantidade}                  FakerLibrary.Random Int                                                        min=1                          max=3
-    &{novo_produto}                Create Dictionary                                                              idProduto=${produto['_id']}    quantidade=${quantidade}
+    ${index_produto}               FakerLibrary.Random Int                                                        min=0                              max=${quantidade_de_produtos-1 }
+    ${produto} =                   Remove From List                                                               ${lista_de_produtos}               ${index_produto}
+    IF                             ${produto['quantidade']} < 3                                                   CONTINUE
+    ${quantidade}                  FakerLibrary.Random Int                                                        min=1                              max=3
+    &{novo_produto}                Create Dictionary                                                              idProduto=${produto['_id']}        quantidade=${quantidade}
     Append To List                 ${nova_lista_produtos}                                                         ${novo_produto}
     END
-    ${carrinho}=                   Add Object To Json                                                             ${carrinho}                    $.produtos                          ${nova_lista_produtos}
+    ${carrinho} =                  Create Dictionary                                                              produtos=${nova_lista_produtos}
     Set Test Variable              ${carrinho}

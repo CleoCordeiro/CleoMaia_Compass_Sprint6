@@ -2,17 +2,17 @@
     "usuario_nao_cadastrado": {
         "nome": "MaisFakeNotaDe3Reais",
         "email": "NuncaSereiCadastrado@NaoExisto.com",
-        "password": "NaoExisto",
+        "password": "123456",
         "administrador": "true"
     },
     "usuario_sem_nome": {
         "email": "emailAleatorio234747@SuperRandominco.com",
-        "password": "SenhaAleatoria",
+        "password": "123456",
         "administrador": "true"
     },
     "usuario_sem_email": {
         "nome": "NomeAleatorio",
-        "password": "NaoExisto",
+        "password": "123456",
         "administrador": "true"
     },
     "usuario_sem_senha": {
@@ -23,7 +23,7 @@
     "usuario_sem_administrador": {
         "nome": "MaisFakeNotaDe3Reais",
         "email": "NuncaSereiCadastrado@NaoExisto.com",
-        "password": "NaoExisto"
+        "password": "123456"
     },
     "usuario_id_invalido": "Invalido"
 }

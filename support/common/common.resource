@@ -3,10 +3,6 @@
 Documentation    Arquivo base para requisições HTTP em APIs Rest
 
 
-#Sessão para configuração de variáveis
-*** Variables ***
-${url}
-
 #Sessão para criação de keywords
 *** Keywords ***
 Importar JSON
@@ -23,7 +19,8 @@ Pegar Key Do Json
        Set Test Variable                         ${${key}}                                        ${json['${key}']}
 
 Criar Sessao
-    Create Session    serverest    ${BASE_URI}    verify=true
+    Custom Create Session    serverest    ${BASE_URI}    verify=True
+
 GET Endpoint "${endpoint}"
     ${response}          GET On Session      serverest             ${endpoint}    expected_status=any
     Set Test Variable    ${response}
@@ -88,8 +85,13 @@ Validar Status Code "${statuscode}"
 Validar Mensagem "${mensagem}"
     Should Be Equal    ${response_body['message']}    ${mensagem}
 
-Validar Quantidade De ${item} ${operador} ${quantidade}
-    Should Be True    ${response_body['quantidade']} ${operador} ${quantidade}
+Pegar Quantidade de "${item}"
+    Custom On Session    GET              ${item}
+    Set Test Variable    ${quantidade}    ${response_body['quantidade']}
+
+Validar Se A Quantidade De ${item} E ${operador_logico} ${valor}
+    Pegar Quantidade de "${item}"
+    Should Be True                   ${quantidade} ${operador_logico} ${valor}
 
 Validar "${key}" Com O Valor "${value}"
     Should Be Equal    ${response_body['${key}']}    ${value}

@@ -16,7 +16,8 @@ Logar E Salvar Token Como
     [Arguments]                                       ${tipo}= Nao Administrador
     Cadastrar Novo Usuario                            ${tipo}
     Remove From Dictionary                            ${usuario}                                                                        nome                                               administrador    _id
-    POST Endpoint "/login" Com Body "${usuario}"
+    Custom On Session   POST    Login   json=${usuario}
+    #POST Endpoint "/login" Com Body "${usuario}"
     Validar Status Code "200"
     Validar Mensagem "Login realizado com sucesso"
     Validar Token

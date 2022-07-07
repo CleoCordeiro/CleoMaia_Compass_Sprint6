@@ -7,6 +7,8 @@ Library          String
 Library          RequestsLibrary
 Library          OperatingSystem
 Library          JSONLibrary
+Library          ./custom_functions/CustomRequests.py
+Library          ./custom_functions/Dynamics.py
 Resource         ./common/common.resource
 Resource         ./fixtures/dynamics.resource
 Resource         ./variables/serverest.resource

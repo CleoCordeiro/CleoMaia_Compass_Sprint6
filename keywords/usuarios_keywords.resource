@@ -18,12 +18,13 @@ Cadastrar Novo Usuario
     ...                                                  - "Nao Administrador"
     [Arguments]                                          ${tipo}= Nao Administrador
     Criar Dados Usuario Valido Do Tipo                   ${tipo}
-    POST Endpoint "/usuarios" Com Body "${usuario}"
+    Custom On Session                                    POST                                                                              Usuarios                       json=${usuario}
+    #POST Endpoint "/usuarios" Com Body "${usuario}"
     Validar Status Code "201"
     Validar Mensagem "Cadastro realizado com sucesso"
     Should Not Be Empty                                  ${response_body['_id']}
     Set To Dictionary                                    ${usuario}                                                                        _id=${response_body['_id']}
-    Set Test Variable                                    ${usuario_valido}                                                                 ${usuario}
+    Set Test Variable                                    ${usuario}                                                                        ${usuario}
 
 Alterar Nome Do Usuario
     ${novo_nome}         FakerLibrary.Name
@@ -44,6 +45,10 @@ Alternar Tipo Do Usuario
 Validar Usuario "${id_usuario_cadastrado}"
     Should Be Equal    ${response_body['_id']}    ${id_usuario_cadastrado}
 
+Validar Nome do Usuario "${id_usuario_cadastrado}" "${nome_de_cadastro}"
+    Custom On Session    GET                         Usuarios/${id_usuario_cadastrado}
+    Should Be Equal      ${response_body['nome']}    ${nome_de_cadastro}
+
 Validar Se O Usuario Foi Removido "${usuario['_id']}"
-    GET Endpoint "/usuarios/${usuario['_id']}"
-    Should Be Equal                               ${response_body['message']}    Usuário não encontrado
+    Custom On Session    GET                            Usuarios/${usuario['_id']}
+    Should Be Equal      ${response_body['message']}    Usuário não encontrado

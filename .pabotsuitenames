@@ -1,8 +1,0 @@
-datasources:e3a1f28bd8f307698aabe5e921b106c0e1eb9046
-commandlineoptions:97d170e1550eee4afc0af065b78cda302a97674c
-suitesfrom:no-suites-from-option
-file:cc3459a6df330175c9c34dbd2d78f13f414ff62a
---suite Tests.01 Login Tests
---suite Tests.02 Usuarios Tests
---suite Tests.03 Produtos Tests
---suite Tests.04 Carrinhos Tests
