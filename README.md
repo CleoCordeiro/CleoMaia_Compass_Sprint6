@@ -14,10 +14,10 @@
 
 
 ## Endpoints
-- [x] Login &emsp; `8 Cenarios de Testes`
-- [x] Usuarios  &emsp; `24 Cenarios de Testes`
-- [x] Produtos  &emsp; `34 Cenarios de Testes`
-- [x] Carrinhos  &emsp; ` Cenarios de Testes`
+- [x] Login &emsp;&emsp;&nbsp; `8 Cenarios de Testes`
+- [x] Usuarios &nbsp;&nbsp; `24 Cenarios de Testes`
+- [x] Produtos &ensp; `34 Cenarios de Testes`
+- [x] Carrinhos &nbsp; `20 Cenarios de Testes`
 
 
 ## Instalação
