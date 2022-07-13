@@ -10,325 +10,383 @@ Suite Setup      Criar Sessao
 ######################
 #    GET PRODUTOS    #
 ######################
-Cenario: Listar Todos Os Produtos Cadastrados
-    [Tags]               GET    Produtos    GET_Produtos    Buscar_Todos_Produtos
-    #Cadastar Novo Produto
-    Custom On Session    GET    Produtos
-    # Validar Status Code "200"
-    # Validar Se A Quantidade De Produtos E > 0
-
-Cenario: Buscar Produto Cadastrado
-    [Tags]                                       GET                 Produtos                      GET_Produtos    Buscar_Produto_Cadastrado
-    Cadastar Novo Produto
-    Pegar Produto Cadastrado
-    Custom On Session                            GET                 Produtos/${produto['_id']}
+CT33: Listar Todos Os Produtos Cadastrados
+    [Tags]                                          GET    Produtos    GET_Produtos    Buscar_Todos_Produtos
+    Cadastrar Novo Produto
+    Custom On Session                               GET    Produtos
     Validar Status Code "200"
+    Validar Estrutura Da Resposta "produtos_get"
     Validar Se A Quantidade De Produtos E > 0
-    Log to Console                               ${response_time}
 
-Cenario: Tentar Buscar Produto Nao Cadastrado
+CT34: Buscar Produto Cadastrado
+    [Tags]                                          GET    Produtos                      GET_Produtos    Buscar_Produto_Cadastrado
+    Cadastrar Novo Produto
+    Pegar Produto Cadastrado
+    Custom On Session                               GET    Produtos/${produto['_id']}
+    Validar Status Code "200"
+    Validar Estrutura Da Resposta "produtos_get"
+    Validar Se A Quantidade De Produtos E > 0
+
+CT35: Tentar Buscar Produto Nao Cadastrado
     [Tags]                                       GET    Produtos                  GET_Produtos    Buscar_Produto_Nao_Cadastrado
     Custom On Session                            GET    Produtos/NaoCadastrado
     Validar Status Code "400"
     Validar Mensagem "Produto não encontrado"
+    Validar Estrutura Da Resposta "message"
 
 #######################
 #    POST PRODUTOS    #
 #######################
-Cenario: Cadastrar Produto Valido
-    [Tags]                                                      POST               Cadastrar_Produto    Cadastar_Produto_Valido
+CT36: Cadastrar Produto Valido
+    [Tags]                                                      POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Valido
     Criar Dados Produto Valido
     Logar E Salvar Token Como                                   "Administrador"
     Pegar Quantidade de "Produtos"
-    Custom On Session                                           POST               Produtos             json=${produto}            headers=${headers}
-    #Custom Theard Request                                POST               Produtos             headers=${headers}
-    Validar Mensagem "Cadastro realizado com sucesso"
+    Custom On Session                                           POST               Produtos    json=${produto}      headers=${headers}
     Validar Status Code "201"
+    Validar Mensagem "Cadastro realizado com sucesso"
     Validar Se A Key Nao Esta Vazia "_id"
+    Validar Estrutura Da Resposta "message_id"
     Validar Se A Quantidade De Produtos E == ${quantidade+1}
 
-Cenario: Cadastrar ${teste_de_carga_produto} Produtos
-    [Tags]                            POST                         Cadastrar_Produto    Teste_De_Carga_Produto
-    Criar Dados Lista De Produto      ${teste_de_carga_produto}
-    Logar E Salvar Token Como         "Administrador"
-    Pegar Quantidade de "Produtos"
-    #Criar Dados Produto Valido
-    Custom Theard Request             POST                         Produtos             data=${lista_de_produtos}    headers=${headers}
-    #Validar Mensagem "Cadastro realizado com sucesso"
-    #Validar Status Code "201"
-    #Validar Se A Key Nao Esta Vazia "_id"
-    #Validar Se A Quantidade De Produtos E == ${quantidade+${teste_de_carga_produto}}
-
-Cenario: Cadastrar Produto Nome Com Acentos
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Nome_Com_Acentos
-    Criar Dados Produto Nome Com Acentos
+CT37: Cadastrar 200 Produtos
+    [Tags]                                                                              POST                         Produtos    Cadastrar_Produto            Teste_De_Carga_Produto
+    Criar Dados Lista De Produto                                                        ${teste_de_carga_produto}
     Logar E Salvar Token Como                                                           "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom Theard Request                                                               POST                         Produtos    data=${lista_de_produtos}    headers=${headers}
     Validar Mensagem "Cadastro realizado com sucesso"
     Validar Status Code "201"
     Validar Se A Key Nao Esta Vazia "_id"
+    Validar Estrutura Da Resposta "message_id"
+    Validar Se A Quantidade De Produtos E == ${quantidade+${teste_de_carga_produto}}
+    Validar Tempo De Resposta ${teste_de_carga_produto}
+
+CT38: Cadastrar Produto Nome Com Acentos
+    [Tags]                                                                    POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Nome_Com_Acentos
+    Criar Dados Produto Nome Com Acentos
+    Logar E Salvar Token Como                                                 "Administrador"
+    Pegar Quantidade de "Produtos"
+    Custom On Session                                                         POST               Produtos    json=${produto}      headers=${headers}
+    Validar Mensagem "Cadastro realizado com sucesso"
+    Validar Status Code "201"
+    Validar Se A Key Nao Esta Vazia "_id"
+    Validar Estrutura Da Resposta "message_id"
     Validar Nome Do Produto "${response_body['_id']}" "${produto['nome']}"
 
 
-Cenario: Tentar Cadastrar Produto Valido Nao Administrador
-    [Tags]                                                                              POST                   Cadastrar_Produto    Cadastar_Produto_Valido_Nao Administrador
+CT39: Tentar Cadastrar Produto Valido Nao Administrador
+    [Tags]                                                    POST                   Produtos    Cadastrar_Produto    Cadastrar_Produto_Valido_Nao Administrador
     Criar Dados Produto Valido
-    Logar E Salvar Token Como                                                           "Nao Administrador"
+    Logar E Salvar Token Como                                 "Nao Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
-    Validar Mensagem "Rota exclusiva para administradores"
+    Custom On Session                                         POST                   Produtos    json=${produto}      headers=${headers}
     Validar Status Code "403"
+    Validar Mensagem "Rota exclusiva para administradores"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastar Produto Nao Autenticado
-    [Tags]                                                                                                POST    Cadastrar_Produto    Cadastar_Produto_Nao_Autenticado
+CT40: Tentar Cadastrar Produto Nao Autenticado
+    [Tags]                                                                                                POST    Produtos    Cadastrar_Produto    Cadastrar_Produto_Nao_Autenticado
     Criar Dados Produto Valido
     Pegar Quantidade de "Produtos"
-    POST EndPoint "/produtos" Com Body "${produto}"
+    Custom On Session                                                                                     POST    Produtos    json=${produto}
     Validar Status Code "401"
     Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastrar Produto Com Token Invalido
-    [Tags]                                                                                                POST    Cadastrar_Produto    Cadastar_Produto_Com_Token_Invalido
+CT41: Tentar Cadastrar Produto Com Token Invalido
+    [Tags]                                                                                                POST    Produtos    Cadastrar_Produto    Cadastrar_Produto_Com_Token_Invalido
     Criar Dados Produto Valido
     Pegar Quantidade de "Produtos"
-    POST EndPoint "/produtos" Com Body "${produto}" Com Token Invalido
+    Gerar Token Invalido
+    Custom On Session                                                                                     POST    Produtos    json=${produto}      headers=${headers}
     Validar Status Code "401"
     Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastrar Produto Ja Cadastrado
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Ja_Cadastrado
+CT42: Tentar Cadastrar Produto Ja Cadastrado
+    [Tags]                                                    POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Ja_Cadastrado
     Pegar Produto Cadastrado
-    Logar E Salvar Token Como                                                           "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         POST               Produtos    json=${produto}      headers=${headers}
+    Validar Status Code "400"
     Validar Mensagem "Já existe produto com esse nome"
-    Validar Status Code "400"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastar Produto Com Nome Vazio
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Com_Nome_Vazio
+CT43: Tentar Cadastrar Produto Com Nome Vazio
+    [Tags]                                                    POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Com_Nome_Vazio
     Pegar Produto Do JSON Sem O Campo "nome"
-    Logar E Salvar Token Como                                                           "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         POST               Produtos    json=${produto}      headers=${headers}
     Validar Status Code "400"
-    Validar "nome" Com O Valor "nome é obrigatório"
+    Validar Mensagem "Já existe produto com esse nome"
+    #Validar "nome" Com O Valor "nome é obrigatório"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastar Produto Com Preco Vazio
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Com_Preco_Vazio
+CT44: Tentar Cadastrar Produto Com Preco Vazio
+    [Tags]                                                    POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Com_Preco_Vazio
     Pegar Produto Do JSON Sem O Campo "preco"
-    Logar E Salvar Token Como                                                           "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         POST               Produtos    json=${produto}      headers=${headers}
     Validar Status Code "400"
-    Validar "preco" Com O Valor "preco é obrigatório"
+    Validar Mensagem "Já existe produto com esse nome"
+    #Validar "preco" Com O Valor "preco é obrigatório"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastar Produto Com Preco Invalido
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Preco_Invalido
+CT45: Tentar Cadastrar Produto Com Preco Invalido
+    [Tags]                                                    POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Preco_Invalido
     Pegar Produto Do JSON Com o Campo "preco" Invalido
-    Logar E Salvar Token Como                                                           "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         POST               Produtos    json=${produto}      headers=${headers}
     Validar Status Code "400"
-    Validar "preco" Com O Valor "preco deve ser um inteiro"
+    Validar Mensagem "Já existe produto com esse nome"
+    #Validar "preco" Com O Valor "preco deve ser um inteiro"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastar Produto Com Descricao Vazia
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Com_Descricao_Vazia
+CT46: Tentar Cadastrar Produto Com Descricao Vazia
+    [Tags]                                                    POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Com_Descricao_Vazia
     Pegar Produto Do JSON Sem O Campo "descricao"
-    Logar E Salvar Token Como                                                           "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         POST               Produtos    json=${produto}      headers=${headers}
     Validar Status Code "400"
-    Validar "descricao" Com O Valor "descricao é obrigatório"
+    Validar Mensagem "Já existe produto com esse nome"
+    #Validar "descricao" Com O Valor "descricao é obrigatório"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastar Produto Com Quantidade Vazia
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Com_Quantidade_Vazia
+CT47: Tentar Cadastrar Produto Com Quantidade Vazia
+    [Tags]                                                    POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Com_Quantidade_Vazia
     Pegar Produto Do JSON Sem O Campo "quantidade"
-    Logar E Salvar Token Como                                                           "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         POST               Produtos    json=${produto}      headers=${headers}
     Validar Status Code "400"
-    Validar "quantidade" Com O Valor "quantidade é obrigatório"
+    Validar Mensagem "Já existe produto com esse nome"
+    #Validar "quantidade" Com O Valor "quantidade é obrigatório"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Cadastrar Produto Com A Quantidade Invalida
-    [Tags]                                                                              POST               Cadastrar_Produto    Cadastar_Produto_Quantidade_Invalida
+CT48: Tentar Cadastrar Produto Com A Quantidade Invalida
+    [Tags]                                                     POST               Produtos    Cadastrar_Produto    Cadastrar_Produto_Quantidade_Invalida
     Pegar Produto Do JSON Com o Campo "quantidade" Invalido
-    Logar E Salvar Token Como                                                           "Administrador"
+    Logar E Salvar Token Como                                  "Administrador"
     Pegar Quantidade de "Produtos"
-    POST Autenticado EndPoint "/produtos" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                          POST               Produtos    json=${produto}      headers=${headers}
     Validar Status Code "400"
-    Validar "quantidade" Com O Valor "quantidade deve ser um inteiro"
+    Validar Mensagem "Já existe produto com esse nome"
+    #Validar "quantidade" Com O Valor "quantidade deve ser um inteiro"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
 ######################
 #    PUT PRODUTOS    #
 ######################
-Cenario: Atualizar Nome do Produto
-    [Tags]                                                                                               PUT                Produtos    PUT_Produtos    Atualizar_Produto_Nome 
+CT49: Atualizar Nome do Produto
+    [Tags]                                                    PUT                Produtos                      PUT_Produtos       Atualizar_Produto_Nome 
     Alterar "String" Campo "nome" Do Produto
-    Logar E Salvar Token Como                                                                            "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         PUT                Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "200"
     Validar Mensagem "Registro alterado com sucesso"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Atualizar Descrição do Produto
-    [Tags]                                                                                               PUT                Produtos    PUT_Produtos    Atualizar_Produto_Descricao 
+CT50: Atualizar Descrição do Produto
+    [Tags]                                                    PUT                Produtos                      PUT_Produtos       Atualizar_Produto_Descricao 
     Alterar "String" Campo "descricao" Do Produto
-    Logar E Salvar Token Como                                                                            "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         PUT                Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "200"
     Validar Mensagem "Registro alterado com sucesso"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Atualizar Preço do Produto
-    [Tags]                                                                                               PUT                Produtos    PUT_Produtos    Atualizar_Produto_Preco 
+CT51: Atualizar Preço do Produto
+    [Tags]                                                    PUT                Produtos                      PUT_Produtos       Atualizar_Produto_Preco 
     Alterar "Integer" Campo "preco" Do Produto
-    Logar E Salvar Token Como                                                                            "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         PUT                Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "200"
     Validar Mensagem "Registro alterado com sucesso"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Atualizar Quantidade do Produto
-    [Tags]                                                                                               PUT                Produtos    PUT_Produtos    Atualizar_Produto_Quantidade 
+CT52: Atualizar Quantidade do Produto
+    [Tags]                                                    PUT                Produtos                      PUT_Produtos       Atualizar_Produto_Quantidade 
     Alterar "Integer" Campo "quantidade" Do Produto
-    Logar E Salvar Token Como                                                                            "Administrador"    
-    Pegar Quantidade de "Produtos"                                                                       
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Logar E Salvar Token Como                                 "Administrador"    
+    Pegar Quantidade de "Produtos"                            
+    Custom On Session                                         PUT                Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "200"
     Validar Mensagem "Registro alterado com sucesso"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Atualizar Produto Sem Alteracao
-    [Tags]                                                                                               PUT                Produtos    PUT_Produtos    Atualizar_Produto_Sem_Alteracao
+CT53: Atualizar Produto Sem Alteracao
+    [Tags]                                                    PUT                Produtos                      PUT_Produtos       Atualizar_Produto_Sem_Alteracao
     Pegar Produto Cadastrado
-    Logar E Salvar Token Como                                                                            "Administrador"
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                         PUT                Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "200"
     Validar Mensagem "Registro alterado com sucesso"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Atualizar Produto Não Cadastrado
-    [Tags]                                                                                       PUT                Produtos    PUT_Produtos    Atualizar_Produto_NAO_CADASTRADO
+CT54: Tentar Atualizar Produto Não Cadastrado
+    [Tags]                                                      PUT                Produtos              PUT_Produtos       Atualizar_Produto_NAO_CADASTRADO
     Criar Dados Produto Valido
-    Logar E Salvar Token Como                                                                    "Administrador"
+    Logar E Salvar Token Como                                   "Administrador"
     Pegar Quantidade de "Produtos"
-    PUT Autenticado EndPoint "/produtos/NaoExisto" Com Body "${produto}" Headers "${headers}"
+    Custom On Session                                           PUT                Produtos/NaoExisto    json=${produto}    headers=${headers}
     Validar Status Code "201"
     Validar Mensagem "Cadastro realizado com sucesso"
     Validar Se A Key Nao Esta Vazia "_id"
+    Validar Estrutura Da Resposta "message_id"
     Validar Se A Quantidade De Produtos E == ${quantidade+1}
 
-Cenario: Tentar Atualizar Produto Cadastrado Sem Autenticacao
-    [Tags]                                                                                                PUT    Produtos    PUT_Produtos    Atualizar_Produto_Sem_Autenticacao
+CT55: Tentar Atualizar Produto Cadastrado Sem Autenticacao
+    [Tags]                                                                                                PUT    Produtos                      PUT_Produtos       Atualizar_Produto_Sem_Autenticacao
     Pegar Produto Cadastrado
     Pegar Quantidade de "Produtos"
-    PUT Endpoint "/produtos/${produto['_id']}" Com Body "${produto}"
+    Custom On Session                                                                                     PUT    Produtos/${produto['_id']}    json=${produto}
     Validar Status Code "401"
     Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Atualizar Produto Cadastrar Sem Informar O ID
-    [Tags]                                                                                       PUT                Produtos    PUT_Produtos    Atualizar_Produto_Sem_ID
+CT56: Tentar Atualizar Produto Cadastrado Com Token Invalido
+    [Tags]                                                                                                PUT    Produtos                      PUT_Produtos       Atualizar_Produto_Token_Invalido
     Pegar Produto Cadastrado
-    Logar E Salvar Token Como                                                                    "Administrador"
     Pegar Quantidade de "Produtos"
-    PUT Autenticado EndPoint "/produtos/NaoExisto" Com Body "${produto}" Headers "${headers}"
+    Gerar Token Invalido
+    Custom On Session                                                                                     PUT    Produtos/${produto['_id']}    json=${produto}    headers=${headers}
+    Validar Status Code "401"
+    Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+    Validar Estrutura Da Resposta "message"
+    Validar Se A Quantidade De Produtos E == ${quantidade}
+
+CT57: Tentar Atualizar Produto Cadastrar Sem Informar O ID
+    [Tags]                                                    PUT                Produtos              PUT_Produtos       Atualizar_Produto_Sem_ID
+    Pegar Produto Cadastrado
+    Logar E Salvar Token Como                                 "Administrador"
+    Pegar Quantidade de "Produtos"
+    Custom On Session                                         PUT                Produtos/NaoExisto    json=${produto}    headers=${headers}
     Validar Status Code "400"
     Validar Mensagem "Já existe produto com esse nome"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Atualizar Produto Autenticado Como Nao Administrador
-    [Tags]                                                                                               PUT                    Produtos    PUT_Produtos    Atualizar_Produto_Nao Administrador
+CT58: Tentar Atualizar Produto Autenticado Como Nao Administrador
+    [Tags]                                                    PUT                    Produtos                      PUT_Produtos       Atualizar_Produto_Nao Administrador
     Pegar Produto Cadastrado
-    Logar E Salvar Token Como                                                                            "Nao Administrador"
-    Pegar Quantidade de "Produtos"                                                                       
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Logar E Salvar Token Como                                 "Nao Administrador"
+    Pegar Quantidade de "Produtos"                            
+    Custom On Session                                         PUT                    Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "403"
     Validar Mensagem "Rota exclusiva para administradores"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Atualizar Produto Cadastrado Com Token Invalido
-    [Tags]                                                                                                PUT    Produtos    PUT_Produtos    Atualizar_Produto_Token_Invalido
-    Pegar Produto Cadastrado
-    Pegar Quantidade de "Produtos"
-    PUT EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Com Token Invalido
-    Validar Status Code "401"
-    Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
-    Validar Se A Quantidade De Produtos E == ${quantidade}
-
-
-
-Cenario: Tentar Atualizar Produto Com Preco Invalido
-    [Tags]                                                                                               PUT                Produtos    PUT_Produtos    Atualizar_Produto_Preco_Invalido
+CT59: Tentar Atualizar Produto Com Preco Invalido
+    [Tags]                                                    PUT                Produtos                      PUT_Produtos       Atualizar_Produto_Preco_Invalido
     Pegar Produto Do JSON Com o Campo "preco" Invalido
-    Logar E Salvar Token Como                                                                            "Administrador"
-    Pegar Quantidade de "Produtos"                                                                       
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Logar E Salvar Token Como                                 "Administrador"
+    Pegar Quantidade de "Produtos"                            
+    Custom On Session                                         PUT                Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "400"
-    Validar "preco" Com O Valor "preco deve ser um inteiro"
+    Validar Mensagem "Já existe produto com esse nome"
+    #Validar "preco" Com O Valor "preco deve ser um inteiro"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Atualizar Produto Com Quantidade Invalida
-    [Tags]                                                                                               PUT                Produtos    PUT_Produtos    Atualizar_Produto_Quantidade_Invalida
+CT60: Tentar Atualizar Produto Com Quantidade Invalida
+    [Tags]                                                     PUT                Produtos                      PUT_Produtos       Atualizar_Produto_Quantidade_Invalida
     Pegar Produto Do JSON Com o Campo "quantidade" Invalido
-    Logar E Salvar Token Como                                                                            "Administrador"
-    Pegar Quantidade de "Produtos"                                                                       
-    PUT Autenticado EndPoint "/produtos/${produto['_id']}" Com Body "${produto}" Headers "${headers}"
+    Logar E Salvar Token Como                                  "Administrador"
+    Pegar Quantidade de "Produtos"                             
+    Custom On Session                                          PUT                Produtos/${produto['_id']}    json=${produto}    headers=${headers}
     Validar Status Code "400"
-    Validar "quantidade" Com O Valor "quantidade deve ser um inteiro"
+    #Validar "quantidade" Com O Valor "quantidade deve ser um inteiro"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
 #########################
 #    DELETE PRODUTOS    #
 #########################
-Cenario: Deletar Produto Cadastrado
-    [Tags]                                                                            DELETE             Produtos    DELETE_Produtos    Deletar_Produto_Cadastrado
-    Cadastar Novo Produto
-    Logar E Salvar Token Como                                                         "Administrador"
+CT61: Deletar Produto Cadastrado
+    [Tags]                                                      DELETE             Produtos                      DELETE_Produtos       Deletar_Produto_Cadastrado
+    Cadastrar Novo Produto
+    Logar E Salvar Token Como                                   "Administrador"
     Pegar Quantidade de "Produtos"
-    DELETE Autenticado EndPoint "/produtos/${produto['_id']}" Headers "${headers}"
+    Custom On Session                                           DELETE             Produtos/${produto['_id']}    headers=${headers}
     Validar Status Code "200"
     Validar Mensagem "Registro excluído com sucesso"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade-1}
 
-Cenario: Tentar Deletar Produto Não Cadastrado
-    [Tags]                                                                    DELETE             Produtos    DELETE_Produtos    Deletar_Produto_Nao_Cadastrado
-    Logar E Salvar Token Como                                                 "Administrador"
+CT62: Tentar Deletar Produto Não Cadastrado
+    [Tags]                                                    DELETE             Produtos              DELETE_Produtos       Deletar_Produto_Nao_Cadastrado
+    Logar E Salvar Token Como                                 "Administrador"
     Pegar Quantidade de "Produtos"
-    DELETE Autenticado EndPoint "/produtos/NaoExisto" Headers "${headers}"
+    Custom On Session                                         DELETE             Produtos/NaoExisto    headers=${headers}
     Validar Status Code "200"
     Validar Mensagem "Nenhum registro excluído"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Deletar Produto Cadastrado Sem Autenticacao
-    [Tags]                                                                                                DELETE    Produtos    DELETE_Produtos    Deletar_Produto_Sem_Autenticacao
-    Cadastar Novo Produto
+CT63: Tentar Deletar Produto Cadastrado Sem Autenticacao
+    [Tags]                                                                                                DELETE    Produtos                      DELETE_Produtos    Deletar_Produto_Sem_Autenticacao
+    Cadastrar Novo Produto
     Pegar Quantidade de "Produtos"
-    DELETE Endpoint "/produtos/${produto['_id']}"
+    Custom On Session                                                                                     DELETE    Produtos/${produto['_id']}
     Validar Status Code "401"
     Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+    Validar Estrutura Da Resposta "message"
     Validar Se A Quantidade De Produtos E == ${quantidade}
 
-Cenario: Tentar Deletar Produto Cadastrado Com Autenticacao De Nao Administrador
-    [Tags]                                                                            DELETE                 Produtos    DELETE_Produtos    Deletar_Produto_Nao Administrador
-    Cadastar Novo Produto
-    Logar E Salvar Token Como                                                         "Nao Administrador"    
+CT64: Tentar Deletar Produto Cadastrado Com Token Invalido
+    [Tags]                                                                                                DELETE    Produtos                      DELETE_Produtos       Deletar_Produto_Token_Invalido
+    Cadastrar Novo Produto
     Pegar Quantidade de "Produtos"
-    DELETE Autenticado EndPoint "/produtos/${produto['_id']}" Headers "${headers}"
+    Gerar Token Invalido
+    Custom On Session                                                                                     DELETE    Produtos/${produto['_id']}    headers=${headers}
+    Validar Status Code "401"
+    Validar Mensagem "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+    Validar Estrutura Da Resposta "message"
+    Validar Se A Quantidade De Produtos E == ${quantidade}
+
+CT65: Tentar Deletar Produto Cadastrado Com Autenticacao De Nao Administrador
+    [Tags]                                                    DELETE                 Produtos                       DELETE_Produtos       Deletar_Produto_Nao Administrador
+    Cadastrar Novo Produto
+    Logar E Salvar Token Como                                 "Nao Administrador"    
+    Pegar Quantidade de "Produtos"
+    Custom On Session                                         DELETE                 Produtos/${produto['_id']}"    headers=${headers}
     Validar Status Code "403"
+    Validar Estrutura Da Resposta "message"
+    Validar Se A Quantidade De Produtos E == ${quantidade}
+
+CT66: Tentar Deletar Produto Que Faz Parte De Um Carrinho
+    [Tags]                                                                          DELETE    Produtos                                            DELETE_Produtos       Deletar_Produto_Que_Faz_Parte_De_Um_Carrinho
+    Cadastrar Novo Carrinho
+    Pegar Quantidade de "Produtos"
+    Custom On Session                                                               DELETE    Produtos/${carrinho['produtos'][0]['idProduto']}    headers=${headers}
+    Validar Status Code "400"
+    Validar Mensagem "Não é permitido excluir produto que faz parte de carrinho"
+    Validar Estrutura Da Resposta "message_idcarrinhos"
     Validar Se A Quantidade De Produtos E == ${quantidade}

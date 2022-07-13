@@ -4,7 +4,7 @@ Resource         ../support/base.resource
 
 #Sessão para criação de keywords
 *** Keywords ***
-Cadastar Novo Produto
+Cadastrar Novo Produto
     Criar Dados Produto Valido
     Logar E Salvar Token Como                            "Administrador"
     Custom On Session                                    POST               Produtos                       json=${produto}    headers=${headers}
@@ -14,13 +14,6 @@ Cadastar Novo Produto
     Set to Dictionary                                    ${produto}         _id=${response_body['_id']}
     Set Test Variable                                    ${produto}
 
-Lista De Todos Produtos
-    Custom On Session    GET                 Produtos
-    [Return]             ${response_body}
-
-Quantidade De Produtos
-    Custom On Session    GET                               Produtos
-    [Return]             ${response_body['quantidade']}
 
 Pegar Produto Cadastrado
     Custom On Session    GET           Produtos
@@ -50,3 +43,21 @@ Alterar "${tipo}" Campo "${key}" Do Produto
     END
     set to dictionary    ${produto}                  ${key}=${novo_valor}
     [Return]             ${produto}
+
+Criar Dados Produto Valido
+    ${produto} =         Criar Dados Produto
+    Set Test Variable    ${produto}
+
+Criar Dados Lista De Produto
+    [Documentation]           Recebe a quantidade de produtos que serão criados e cria a variável lista_de_produtos
+    ...                       Se não for passado nenhuma quantidade, cria a variável lista_de_produtos com quantidade de 1
+    [Arguments]               ${quantidade}= 1
+    ${lista_de_produtos} =    Criar Dados Produto                                                                             ${quantidade}
+    Set Test Variable         ${lista_de_produtos}
+
+Criar Dados Produto Nome Com Acentos
+    Criar Dados Produto Valido
+    Pegar Key Do Json             acentos.json    acentos
+    ${novo_nome_com_acentos}      Catenate        SEPARATOR=                       ${acentos}    ${produto['nome']}
+    Set To Dictionary             ${produto}      nome=${novo_nome_com_acentos}
+

@@ -1,0 +1,1352 @@
+{
+    "login_get": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "message",
+            "authorization"
+        ],
+        "properties": {
+            "message": {
+                "type": "string",
+                "default": "",
+                "title": "The message Schema",
+                "examples": [
+                    "Login realizado com sucesso"
+                ]
+            },
+            "authorization": {
+                "type": "string",
+                "default": "",
+                "title": "The authorization Schema",
+                "examples": [
+                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNTg5NzU4NzQ2LCJleHAiOjE1ODk3Njg3NDZ9.B6TASHV8k9xBerz4NSeFBlAZGSDhZlqESt767M0567I"
+                ]
+            }
+        },
+        "examples": [
+            {
+                "message": "Login realizado com sucesso",
+                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNTg5NzU4NzQ2LCJleHAiOjE1ODk3Njg3NDZ9.B6TASHV8k9xBerz4NSeFBlAZGSDhZlqESt767M0567I"
+            }
+        ]
+    },
+    "usuario_get": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "quantidade",
+            "usuarios"
+        ],
+        "properties": {
+            "quantidade": {
+                "type": "integer",
+                "default": 0,
+                "title": "The quantidade Schema",
+                "examples": [
+                    1
+                ]
+            },
+            "usuarios": {
+                "type": "array",
+                "default": [],
+                "title": "The usuarios Schema",
+                "items": {
+                    "type": "object",
+                    "default": {},
+                    "title": "A Schema",
+                    "required": [
+                        "nome",
+                        "email",
+                        "password",
+                        "administrador",
+                        "_id"
+                    ],
+                    "properties": {
+                        "nome": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The nome Schema",
+                            "examples": [
+                                "Fulano da Silva"
+                            ]
+                        },
+                        "email": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The email Schema",
+                            "examples": [
+                                "beltrano@qa.com.br"
+                            ]
+                        },
+                        "password": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The password Schema",
+                            "examples": [
+                                "teste"
+                            ]
+                        },
+                        "administrador": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The administrador Schema",
+                            "examples": [
+                                "true"
+                            ]
+                        },
+                        "_id": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The _id Schema",
+                            "examples": [
+                                "0uxuPY0cbmQhpEz1"
+                            ]
+                        }
+                    },
+                    "examples": [
+                        {
+                            "nome": "Fulano da Silva",
+                            "email": "beltrano@qa.com.br",
+                            "password": "teste",
+                            "administrador": "true",
+                            "_id": "0uxuPY0cbmQhpEz1"
+                        }
+                    ]
+                },
+                "examples": [
+                    [
+                        {
+                            "nome": "Fulano da Silva",
+                            "email": "beltrano@qa.com.br",
+                            "password": "teste",
+                            "administrador": "true",
+                            "_id": "0uxuPY0cbmQhpEz1"
+                        }
+                    ]
+                ]
+            }
+        },
+        "examples": [
+            {
+                "quantidade": 1,
+                "usuarios": [
+                    {
+                        "nome": "Fulano da Silva",
+                        "email": "beltrano@qa.com.br",
+                        "password": "teste",
+                        "administrador": "true",
+                        "_id": "0uxuPY0cbmQhpEz1"
+                    }
+                ]
+            }
+        ]
+    },
+    "usuario_get_id": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "nome",
+            "email",
+            "password",
+            "administrador",
+            "_id"
+        ],
+        "properties": {
+            "nome": {
+                "type": "string",
+                "default": "",
+                "title": "The nome Schema",
+                "examples": [
+                    "Fulano da Silva"
+                ]
+            },
+            "email": {
+                "type": "string",
+                "default": "",
+                "title": "The email Schema",
+                "examples": [
+                    "beltrano@qa.com.br"
+                ]
+            },
+            "password": {
+                "type": "string",
+                "default": "",
+                "title": "The password Schema",
+                "examples": [
+                    "teste"
+                ]
+            },
+            "administrador": {
+                "type": "string",
+                "default": "",
+                "title": "The administrador Schema",
+                "examples": [
+                    "true"
+                ]
+            },
+            "_id": {
+                "type": "string",
+                "default": "",
+                "title": "The _id Schema",
+                "examples": [
+                    "0uxuPY0cbmQhpEz1"
+                ]
+            }
+        },
+        "examples": [
+            {
+                "nome": "Fulano da Silva",
+                "email": "beltrano@qa.com.br",
+                "password": "teste",
+                "administrador": "true",
+                "_id": "0uxuPY0cbmQhpEz1"
+            }
+        ]
+    },
+    "produtos_get": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "quantidade",
+            "produtos"
+        ],
+        "properties": {
+            "quantidade": {
+                "type": "integer",
+                "default": 0,
+                "title": "The quantidade Schema",
+                "examples": [
+                    2
+                ]
+            },
+            "produtos": {
+                "type": "array",
+                "default": [],
+                "title": "The produtos Schema",
+                "items": {
+                    "type": "object",
+                    "title": "A Schema",
+                    "required": [
+                        "nome",
+                        "preco",
+                        "descricao",
+                        "quantidade",
+                        "_id"
+                    ],
+                    "properties": {
+                        "nome": {
+                            "type": "string",
+                            "title": "The nome Schema",
+                            "examples": [
+                                "Logitech MX Vertical",
+                                "Samsung 60 polegadas"
+                            ]
+                        },
+                        "preco": {
+                            "type": "integer",
+                            "title": "The preco Schema",
+                            "examples": [
+                                470,
+                                5240
+                            ]
+                        },
+                        "descricao": {
+                            "type": "string",
+                            "title": "The descricao Schema",
+                            "examples": [
+                                "Mouse",
+                                "TV"
+                            ]
+                        },
+                        "quantidade": {
+                            "type": "integer",
+                            "title": "The quantidade Schema",
+                            "examples": [
+                                381,
+                                49977
+                            ]
+                        },
+                        "_id": {
+                            "type": "string",
+                            "title": "The _id Schema",
+                            "examples": [
+                                "BeeJh5lz3k6kSIzA",
+                                "K6leHdftCeOJj8BJ"
+                            ]
+                        }
+                    },
+                    "examples": [
+                        {
+                            "nome": "Logitech MX Vertical",
+                            "preco": 470,
+                            "descricao": "Mouse",
+                            "quantidade": 381,
+                            "_id": "BeeJh5lz3k6kSIzA"
+                        },
+                        {
+                            "nome": "Samsung 60 polegadas",
+                            "preco": 5240,
+                            "descricao": "TV",
+                            "quantidade": 49977,
+                            "_id": "K6leHdftCeOJj8BJ"
+                        }
+                    ]
+                },
+                "examples": [
+                    [
+                        {
+                            "nome": "Logitech MX Vertical",
+                            "preco": 470,
+                            "descricao": "Mouse",
+                            "quantidade": 381,
+                            "_id": "BeeJh5lz3k6kSIzA"
+                        },
+                        {
+                            "nome": "Samsung 60 polegadas",
+                            "preco": 5240,
+                            "descricao": "TV",
+                            "quantidade": 49977,
+                            "_id": "K6leHdftCeOJj8BJ"
+                        }
+                    ]
+                ]
+            }
+        },
+        "examples": [
+            {
+                "quantidade": 2,
+                "produtos": [
+                    {
+                        "nome": "Logitech MX Vertical",
+                        "preco": 470,
+                        "descricao": "Mouse",
+                        "quantidade": 381,
+                        "_id": "BeeJh5lz3k6kSIzA"
+                    },
+                    {
+                        "nome": "Samsung 60 polegadas",
+                        "preco": 5240,
+                        "descricao": "TV",
+                        "quantidade": 49977,
+                        "_id": "K6leHdftCeOJj8BJ"
+                    }
+                ]
+            }
+        ]
+    },
+    "produtos_get_id": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "nome",
+            "preco",
+            "descricao",
+            "quantidade",
+            "_id"
+        ],
+        "properties": {
+            "nome": {
+                "type": "string",
+                "default": "",
+                "title": "The nome Schema",
+                "examples": [
+                    "Logitech MX Vertical"
+                ]
+            },
+            "preco": {
+                "type": "integer",
+                "default": 0,
+                "title": "The preco Schema",
+                "examples": [
+                    470
+                ]
+            },
+            "descricao": {
+                "type": "string",
+                "default": "",
+                "title": "The descricao Schema",
+                "examples": [
+                    "Mouse"
+                ]
+            },
+            "quantidade": {
+                "type": "integer",
+                "default": 0,
+                "title": "The quantidade Schema",
+                "examples": [
+                    381
+                ]
+            },
+            "_id": {
+                "type": "string",
+                "default": "",
+                "title": "The _id Schema",
+                "examples": [
+                    "BeeJh5lz3k6kSIzA"
+                ]
+            }
+        },
+        "examples": [
+            {
+                "nome": "Logitech MX Vertical",
+                "preco": 470,
+                "descricao": "Mouse",
+                "quantidade": 381,
+                "_id": "BeeJh5lz3k6kSIzA"
+            }
+        ]
+    },
+    "carrinhos_get": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "quantidade",
+            "carrinhos"
+        ],
+        "properties": {
+            "quantidade": {
+                "type": "integer",
+                "default": 0,
+                "title": "The quantidade Schema",
+                "examples": [
+                    1
+                ]
+            },
+            "carrinhos": {
+                "type": "array",
+                "default": [],
+                "title": "The carrinhos Schema",
+                "items": {
+                    "type": "object",
+                    "default": {},
+                    "title": "A Schema",
+                    "required": [
+                        "produtos",
+                        "precoTotal",
+                        "quantidadeTotal",
+                        "idUsuario",
+                        "_id"
+                    ],
+                    "properties": {
+                        "produtos": {
+                            "type": "array",
+                            "default": [],
+                            "title": "The produtos Schema",
+                            "items": {
+                                "type": "array",
+                                "default": [],
+                                "title": "A Schema",
+                                "items": {
+                                    "type": "object",
+                                    "title": "A Schema",
+                                    "required": [
+                                        "idProduto",
+                                        "quantidade",
+                                        "precoUnitario"
+                                    ],
+                                    "properties": {
+                                        "idProduto": {
+                                            "type": "string",
+                                            "title": "The idProduto Schema",
+                                            "examples": [
+                                                "BeeJh5lz3k6kSIzA",
+                                                "K6leHdftCeOJj8BJ"
+                                            ]
+                                        },
+                                        "quantidade": {
+                                            "type": "integer",
+                                            "title": "The quantidade Schema",
+                                            "examples": [
+                                                1,
+                                                2
+                                            ]
+                                        },
+                                        "precoUnitario": {
+                                            "type": "integer",
+                                            "title": "The precoUnitario Schema",
+                                            "examples": [
+                                                470,
+                                                5240
+                                            ]
+                                        }
+                                    },
+                                    "examples": [
+                                        {
+                                            "idProduto": "BeeJh5lz3k6kSIzA",
+                                            "quantidade": 1,
+                                            "precoUnitario": 470
+                                        },
+                                        {
+                                            "idProduto": "K6leHdftCeOJj8BJ",
+                                            "quantidade": 2,
+                                            "precoUnitario": 5240
+                                        }
+                                    ]
+                                },
+                                "examples": [
+                                    [
+                                        {
+                                            "idProduto": "BeeJh5lz3k6kSIzA",
+                                            "quantidade": 1,
+                                            "precoUnitario": 470
+                                        },
+                                        {
+                                            "idProduto": "K6leHdftCeOJj8BJ",
+                                            "quantidade": 2,
+                                            "precoUnitario": 5240
+                                        }
+                                    ]
+                                ]
+                            },
+                            "examples": [
+                                [
+                                    [
+                                        {
+                                            "idProduto": "BeeJh5lz3k6kSIzA",
+                                            "quantidade": 1,
+                                            "precoUnitario": 470
+                                        },
+                                        {
+                                            "idProduto": "K6leHdftCeOJj8BJ",
+                                            "quantidade": 2,
+                                            "precoUnitario": 5240
+                                        }
+                                    ]
+                                ]
+                            ]
+                        },
+                        "precoTotal": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The precoTotal Schema",
+                            "examples": [
+                                10950
+                            ]
+                        },
+                        "quantidadeTotal": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The quantidadeTotal Schema",
+                            "examples": [
+                                3
+                            ]
+                        },
+                        "idUsuario": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The idUsuario Schema",
+                            "examples": [
+                                "oUb7aGkMtSEPf6BZ"
+                            ]
+                        },
+                        "_id": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The _id Schema",
+                            "examples": [
+                                "aFOUqntef4iaOwWfg"
+                            ]
+                        }
+                    },
+                    "examples": [
+                        {
+                            "produtos": [
+                                [
+                                    {
+                                        "idProduto": "BeeJh5lz3k6kSIzA",
+                                        "quantidade": 1,
+                                        "precoUnitario": 470
+                                    },
+                                    {
+                                        "idProduto": "K6leHdftCeOJj8BJ",
+                                        "quantidade": 2,
+                                        "precoUnitario": 5240
+                                    }
+                                ]
+                            ],
+                            "precoTotal": 10950,
+                            "quantidadeTotal": 3,
+                            "idUsuario": "oUb7aGkMtSEPf6BZ",
+                            "_id": "aFOUqntef4iaOwWfg"
+                        }
+                    ]
+                },
+                "examples": [
+                    [
+                        {
+                            "produtos": [
+                                [
+                                    {
+                                        "idProduto": "BeeJh5lz3k6kSIzA",
+                                        "quantidade": 1,
+                                        "precoUnitario": 470
+                                    },
+                                    {
+                                        "idProduto": "K6leHdftCeOJj8BJ",
+                                        "quantidade": 2,
+                                        "precoUnitario": 5240
+                                    }
+                                ]
+                            ],
+                            "precoTotal": 10950,
+                            "quantidadeTotal": 3,
+                            "idUsuario": "oUb7aGkMtSEPf6BZ",
+                            "_id": "aFOUqntef4iaOwWfg"
+                        }
+                    ]
+                ]
+            }
+        },
+        "examples": [
+            {
+                "quantidade": 1,
+                "carrinhos": [
+                    {
+                        "produtos": [
+                            [
+                                {
+                                    "idProduto": "BeeJh5lz3k6kSIzA",
+                                    "quantidade": 1,
+                                    "precoUnitario": 470
+                                },
+                                {
+                                    "idProduto": "K6leHdftCeOJj8BJ",
+                                    "quantidade": 2,
+                                    "precoUnitario": 5240
+                                }
+                            ]
+                        ],
+                        "precoTotal": 10950,
+                        "quantidadeTotal": 3,
+                        "idUsuario": "oUb7aGkMtSEPf6BZ",
+                        "_id": "aFOUqntef4iaOwWfg"
+                    }
+                ]
+            }
+        ]
+    },
+    "carrinhos_get_id": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+            "$schema": {
+                "type": "string"
+            },
+            "$id": {
+                "type": "string"
+            },
+            "type": {
+                "type": "string"
+            },
+            "default": {
+                "type": "object"
+            },
+            "title": {
+                "type": "string"
+            },
+            "required": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
+            },
+            "properties": {
+                "type": "object",
+                "properties": {
+                    "produtos": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "default": {
+                                "type": "array",
+                                "items": {}
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "default": {
+                                        "type": "array",
+                                        "items": {}
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "required": {
+                                                "type": "array",
+                                                "items": [
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    {
+                                                        "type": "string"
+                                                    }
+                                                ]
+                                            },
+                                            "properties": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "idProduto": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "title": {
+                                                                "type": "string"
+                                                            },
+                                                            "examples": {
+                                                                "type": "array",
+                                                                "items": [
+                                                                    {
+                                                                        "type": "string"
+                                                                    },
+                                                                    {
+                                                                        "type": "string"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "type",
+                                                            "title",
+                                                            "examples"
+                                                        ]
+                                                    },
+                                                    "quantidade": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "title": {
+                                                                "type": "string"
+                                                            },
+                                                            "examples": {
+                                                                "type": "array",
+                                                                "items": [
+                                                                    {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    {
+                                                                        "type": "integer"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "type",
+                                                            "title",
+                                                            "examples"
+                                                        ]
+                                                    },
+                                                    "precoUnitario": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "title": {
+                                                                "type": "string"
+                                                            },
+                                                            "examples": {
+                                                                "type": "array",
+                                                                "items": [
+                                                                    {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    {
+                                                                        "type": "integer"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "type",
+                                                            "title",
+                                                            "examples"
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "idProduto",
+                                                    "quantidade",
+                                                    "precoUnitario"
+                                                ]
+                                            },
+                                            "examples": {
+                                                "type": "array",
+                                                "items": [
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idProduto": {
+                                                                "type": "string"
+                                                            },
+                                                            "quantidade": {
+                                                                "type": "integer"
+                                                            },
+                                                            "precoUnitario": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "idProduto",
+                                                            "quantidade",
+                                                            "precoUnitario"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idProduto": {
+                                                                "type": "string"
+                                                            },
+                                                            "quantidade": {
+                                                                "type": "integer"
+                                                            },
+                                                            "precoUnitario": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "idProduto",
+                                                            "quantidade",
+                                                            "precoUnitario"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "title",
+                                            "required",
+                                            "properties",
+                                            "examples"
+                                        ]
+                                    },
+                                    "examples": {
+                                        "type": "array",
+                                        "items": [
+                                            {
+                                                "type": "array",
+                                                "items": [
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idProduto": {
+                                                                "type": "string"
+                                                            },
+                                                            "quantidade": {
+                                                                "type": "integer"
+                                                            },
+                                                            "precoUnitario": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "idProduto",
+                                                            "quantidade",
+                                                            "precoUnitario"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idProduto": {
+                                                                "type": "string"
+                                                            },
+                                                            "quantidade": {
+                                                                "type": "integer"
+                                                            },
+                                                            "precoUnitario": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "idProduto",
+                                                            "quantidade",
+                                                            "precoUnitario"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "default",
+                                    "title",
+                                    "items",
+                                    "examples"
+                                ]
+                            },
+                            "examples": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "array",
+                                        "items": [
+                                            {
+                                                "type": "array",
+                                                "items": [
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idProduto": {
+                                                                "type": "string"
+                                                            },
+                                                            "quantidade": {
+                                                                "type": "integer"
+                                                            },
+                                                            "precoUnitario": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "idProduto",
+                                                            "quantidade",
+                                                            "precoUnitario"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idProduto": {
+                                                                "type": "string"
+                                                            },
+                                                            "quantidade": {
+                                                                "type": "integer"
+                                                            },
+                                                            "precoUnitario": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "idProduto",
+                                                            "quantidade",
+                                                            "precoUnitario"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "default",
+                            "title",
+                            "items",
+                            "examples"
+                        ]
+                    },
+                    "precoTotal": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "default": {
+                                "type": "integer"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "examples": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "integer"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "default",
+                            "title",
+                            "examples"
+                        ]
+                    },
+                    "quantidadeTotal": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "default": {
+                                "type": "integer"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "examples": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "integer"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "default",
+                            "title",
+                            "examples"
+                        ]
+                    },
+                    "idUsuario": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "default": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "examples": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "default",
+                            "title",
+                            "examples"
+                        ]
+                    },
+                    "_id": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "default": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "examples": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "default",
+                            "title",
+                            "examples"
+                        ]
+                    }
+                },
+                "required": [
+                    "produtos",
+                    "precoTotal",
+                    "quantidadeTotal",
+                    "idUsuario",
+                    "_id"
+                ]
+            },
+            "examples": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "produtos": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "array",
+                                        "items": [
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "idProduto": {
+                                                        "type": "string"
+                                                    },
+                                                    "quantidade": {
+                                                        "type": "integer"
+                                                    },
+                                                    "precoUnitario": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "idProduto",
+                                                    "quantidade",
+                                                    "precoUnitario"
+                                                ]
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "idProduto": {
+                                                        "type": "string"
+                                                    },
+                                                    "quantidade": {
+                                                        "type": "integer"
+                                                    },
+                                                    "precoUnitario": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "idProduto",
+                                                    "quantidade",
+                                                    "precoUnitario"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "precoTotal": {
+                                "type": "integer"
+                            },
+                            "quantidadeTotal": {
+                                "type": "integer"
+                            },
+                            "idUsuario": {
+                                "type": "string"
+                            },
+                            "_id": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "produtos",
+                            "precoTotal",
+                            "quantidadeTotal",
+                            "idUsuario",
+                            "_id"
+                        ]
+                    }
+                ]
+            }
+        },
+        "required": [
+            "$schema",
+            "$id",
+            "type",
+            "default",
+            "title",
+            "required",
+            "properties",
+            "examples"
+        ]
+    },
+    "message": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "message"
+        ],
+        "properties": {
+            "message": {
+                "type": "string",
+                "default": "",
+                "title": "The message Schema",
+                "examples": [
+                    "Email e/ou senha inválidos"
+                ]
+            }
+        },
+        "examples": [
+            {
+                "message": "Email e/ou senha inválidos"
+            }
+        ]
+    },
+    "message_id": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "message",
+            "_id"
+        ],
+        "properties": {
+            "message": {
+                "type": "string",
+                "default": "",
+                "title": "The message Schema",
+                "examples": [
+                    "Cadastro realizado com sucesso"
+                ]
+            },
+            "_id": {
+                "type": "string",
+                "default": "",
+                "title": "The _id Schema",
+                "examples": [
+                    "jogfODIlXsqxNFS2"
+                ]
+            }
+        },
+        "examples": [
+            {
+                "message": "Cadastro realizado com sucesso",
+                "_id": "jogfODIlXsqxNFS2"
+            }
+        ]
+    },
+    "message_idcarrinho": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "message",
+            "idCarrinho"
+        ],
+        "properties": {
+            "message": {
+                "type": "string",
+                "default": "",
+                "title": "The message Schema",
+                "examples": [
+                    "Não é permitido excluir usuário com carrinho cadastrado"
+                ]
+            },
+            "idCarrinho": {
+                "type": "string",
+                "default": "",
+                "title": "The idCarrinho Schema",
+                "examples": [
+                    "qbMqntef4iTOwWfg"
+                ]
+            }
+        },
+        "examples": [
+            {
+                "message": "Não é permitido excluir usuário com carrinho cadastrado",
+                "idCarrinho": "qbMqntef4iTOwWfg"
+            }
+        ]
+    },
+    "message_idcarrinhos": {
+        "$schema": "https://json-schema.org/draft/2019-09/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "default": {},
+        "title": "Root Schema",
+        "required": [
+            "message",
+            "idCarrinho"
+        ],
+        "properties": {
+            "message": {
+                "type": "string",
+                "default": "",
+                "title": "The message Schema",
+                "examples": [
+                    "Não é permitido excluir produto que faz parte de carrinho"
+                ]
+            },
+            "idCarrinho": {
+                "type": "array",
+                "default": [],
+                "title": "The idCarrinho Schema",
+                "items": {
+                    "type": "string",
+                    "default": "",
+                    "title": "A Schema",
+                    "examples": [
+                        "qbMqntef4iTOwWfg, yILJY1eaAUC6hyRc"
+                    ]
+                },
+                "examples": [
+                    [
+                        "qbMqntef4iTOwWfg, yILJY1eaAUC6hyRc"
+                    ]
+                ]
+            }
+        },
+        "examples": [
+            {
+                "message": "Não é permitido excluir produto que faz parte de carrinho",
+                "idCarrinho": [
+                    "qbMqntef4iTOwWfg, yILJY1eaAUC6hyRc"
+                ]
+            }
+        ]
+    }
+}

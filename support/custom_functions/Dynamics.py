@@ -1,44 +1,58 @@
-from threading import Thread
-from typing import Dict, List, Union
-from faker import Faker
-from mimesis.enums import Gender
+from typing import Union
 from mimesis.locales import Locale
 from mimesis.schema import Field, Schema
+from mimesis.providers.person import *
 from robot.api.deco import keyword
+from robot.api.logger import console
 from robot.libraries.BuiltIn import BuiltIn
-from robot.api.deco import keyword
 
-
-_PlainJSON = Union[
-    None, bool, int, float, str, List["_PlainJSON"], Dict[str, "_PlainJSON"]
-]
-JSON = Union[_PlainJSON, Dict[str, "JSON"], List["JSON"]]
 
 class Dynamics:
+    """ Geração de massa de dados para uso nos testes da API ServeRest.
+    
+        Gera dados de: Usuários, Produtos e Carrinhos.
 
-    # def __init__(self):
-    #     self.usuario = self.criar_usuario()
+        Cada método retorna uma lista de dicionários ou um dicionário.
+    """
+    @keyword(name="Criar Dados Usuario Do Tipo")
+    def criar_usuario(self, administrador: str = "false", quantidade: int = 1)-> Union[list, dict]:
+        """Cria um ou mais usuários do tipo especificado
 
-    # @keyword(name="Criar Dados Usuario Valido Do Tipo")
-    # def criar_usuario(admin: bool=False)-> JSON:
-        
-    #     nome = g.name()
-    #     email = nome+g.email()
-    #     senha = g.password()
-    #     administrador = admin
-    #     usuario = {
-    #         "nome": nome,
-    #         "email": email,
-    #         "senha": senha,
-    #         "administrador": administrador
-    #     }
+        Args:
+            administrador (str, optional): Define se o usuario será administrador ou nao (default: "false").
+            quantidade (int, optional): Define a quantidade de usuários a serem criados (default: 1).
 
-    #     BuiltIn().set_test_variable("${usuario}", usuario)
-    #     return usuario
+        Returns:  Lista de usuários criados ou um dicionário com o usuário criado
+            
+        """
+        if administrador == '"Administrador"' or administrador == "Administrador":
+            administrador = "true"
+        elif administrador == '"Nao Administrador"' or administrador == "Nao Administrador":
+            administrador = "false"
+        _ = Field(locale=Locale.PT_BR)
+        schema = Schema(schema=lambda: {
+            "nome": _("full_name"),
+            "email": _("email"),
+            "password": _("password", length = 8),
+            "administrador": administrador,
+            })
+        if quantidade == 1:
+            return schema.create(iterations=quantidade)[0]
+        else:
+            return schema.create(iterations=quantidade)
   
+
     @keyword(name="Criar Dados Produto")
-    def produtos(self, quantidade: int = 1)-> JSON:
-        _ = Field(locale=Locale.EN)
+    def produtos(self, quantidade: int = 1)-> Union[list, dict]:
+        """Cria um ou mais produtos
+
+        Args:
+            quantidade (int, optional): Define a quantidade de produtos a serem criados (default: 1).
+
+        Returns:
+            Returns: Lista de produtos criados ou um dicionário com o produto criado
+        """        
+        _ = Field(locale=Locale.PT_BR)
         schema = Schema(schema=lambda: {
             "nome": _("text.word")+_("text.word"),
             "descricao": _("sentence"),
@@ -50,51 +64,58 @@ class Dynamics:
         else:
             return schema.create(iterations=quantidade)
 
-    
 
-# Criar Dados Carrinho Valido
-#     [Documentation]                Gera um carrinho aleatório e retorna um dicionário com os dados do carrinho
-#     ${produtos} =                  Lista De Todos Produtos
-#     Set Test Variable              ${lista_de_produtos}                                                           ${produtos['produtos']}
-#     ${quantidade_de_produtos} =    Get length                                                                     ${lista_de_produtos}
-#     ${quantidade_aleatoria}        FakerLibrary.Random Int                                                        min=1                              max=10
-#     @{nova_lista_produtos}         Create List
-#     ${carrinho}=                   Create Dictionary
-#     FOR                            ${i}                                                                           IN RANGE                           ${quantidade_aleatoria}
-#     ${quantidade_de_produtos} =    Get length                                                                     ${lista_de_produtos}
-#     ${index_produto}               FakerLibrary.Random Int                                                        min=0                              max=${quantidade_de_produtos-1 }
-#     ${produto} =                   Remove From List                                                               ${lista_de_produtos}               ${index_produto}
-#     IF                             ${produto['quantidade']} < 3                                                   CONTINUE
-#     ${quantidade}                  FakerLibrary.Random Int                                                        min=1                              max=3
-#     &{novo_produto}                Create Dictionary                                                              idProduto=${produto['_id']}        quantidade=${quantidade}
-#     Append To List                 ${nova_lista_produtos}                                                         ${novo_produto}
-#     END
-#     ${carrinho} =                  Create Dictionary                                                              produtos=${nova_lista_produtos}
-#     Set Test Variable              ${carrinho}
+    def _criar_lista_produtos_para_carrinho(self, quantidade_produtos: int) -> list:
+        """Cria uma lista de produtos para o carrinho
 
-def criar_carrinho_valido()-> JSON:
-    fake = Faker()
-    produtos = BuiltIn().run_keyword("Lista De Todos Produtos")
-    quantidade_de_produtos = len(produtos['produtos'])
-    quantidade_aleatoria = fake.random_int(min=1, max=10)
-    nova_lista_produtos = []
+        Args:
+            quantidade_produtos (int): Define a quantidade de produtos contidos no carrinho.
 
-    for i in range(quantidade_aleatoria):
-        quantidade_de_produtos = len(produtos['produtos'])
-        index_produto = fake.random_int(min=0, max=quantidade_de_produtos-1)
-        produto = produtos['produtos'].pop(index_produto)
-        if produto['quantidade'] < 3:
-            continue
-        quantidade = fake.random_int(min=1, max=3)
-        novo_produto = {
-            "idProduto": produto['_id'],
-            "quantidade": quantidade
-        }
-        nova_lista_produtos.append(novo_produto)
+        Returns:
+            list: Lista de produtos
+        """              
+        _ = Field(locale=Locale.PT_BR)
+        produtos = BuiltIn().run_keyword("Lista De Todos Produtos")
+        
+        
+        lista_id_quantidade = Schema(schema=lambda: {
+        "idProduto": produtos['produtos'].pop()['_id'],
+        "quantidade": _("integer_number", start=1, end=3)
+        })
+        return lista_id_quantidade.create(iterations=quantidade_produtos)
 
-    carrinho = {
-        "produtos": nova_lista_produtos
-    }
 
-    BuiltIn().set_test_variable("${carrinho}", carrinho)
-    return carrinho
+    @keyword(name="Criar Dados Carrinho")
+    def criar_carrinho_valido(self, quantidade: int = 1)-> Union[list, dict]:
+        """ Cria um ou mais carrinhos válidos
+
+        Args:
+            quantidade (int, optional): Define a quantidade de carrinhos a serem criados (default: 1).
+
+        Returns: Lista de carrinhos criados ou um dicionário com o carrinho criado
+        """ 
+        _ = Field(locale=Locale.PT_BR)
+        quantidade_aleatoria = _("integer_number", start=1, end=10)
+        carrinho = Schema(schema=lambda: {
+            "produtos": self._criar_lista_produtos_para_carrinho(quantidade_aleatoria)
+            })
+
+        if quantidade == 1:
+            return carrinho.create(iterations=quantidade)[0]
+        else:
+            return carrinho.create(iterations=quantidade)
+
+
+    @keyword(name="Gerar Dado Randomico")
+    def gerar_dado_randomico(self, dado, **kwargs: int):
+        """ Gera e retorna um dado randomico.
+
+        Args:
+            dado (_type_): Define o tipo do dado a ser gerado.
+
+        kwargs: Parâmetros opcionais para o dado a ser gerado.
+        
+        Returns:
+            _type_: Retorna o dado gerado.
+        """        
+        return eval(f" Person().{dado}(**kwargs)")

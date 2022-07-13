@@ -25,5 +25,11 @@
         "email": "NuncaSereiCadastrado@NaoExisto.com",
         "password": "123456"
     },
+    "usuario_email_invalido": {
+        "nome": "MaisFakeNotaDe3Reais",
+        "email": "654321",
+        "password": "123456",
+        "administrador": "true"
+    },
     "usuario_id_invalido": "Invalido"
 }

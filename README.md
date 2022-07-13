@@ -1,31 +1,36 @@
-# Challagen Sprint 6 <img align="center" height="30" width="40" src="https://raw.githubusercontent.com/CleoCordeiro/Asserts/main/Asserts/robot-framework.svg" />
-[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
+# Challagen Sprint 6 <img align="center" height="30" width="40" src="https://raw.githubusercontent.com/CleoCordeiro/Assets/main/Assets/robot-framework.svg" />
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
 
 
-# Testes Automatizados ServeRest API Usando Robot Framework
+
+# Testes Automatizados [ServeRest API](https://serverest.dev/) Usando Robot Framework
 
 :shopping_cart: https://serverest.dev/
 
 
-<img src="https://raw.githubusercontent.com/CleoCordeiro/Asserts/main/Asserts/dacing.gif" alt="">
+<img src="https://raw.githubusercontent.com/CleoCordeiro/Assets/main/Assets/dacing.gif" alt="">
 
 
 ## Endpoints
-- [x] Login
-- [x] Usuarios
-- [x] Produtos
-- [x] Carrinhos
+- [x] Login &emsp; `8 Cenarios de Testes`
+- [x] Usuarios  &emsp; `24 Cenarios de Testes`
+- [x] Produtos  &emsp; `34 Cenarios de Testes`
+- [x] Carrinhos  &emsp; ` Cenarios de Testes`
+
 
 ## Instalação
 
-- Instalar o Python
-- Instalar as dependências do Robot Framework: `pip install -r requirements.txt`
+- Instalar o Python https://python.org.br/instalacao-windows/
+- Instalar as dependências `pip install -r requirements.txt`
 
-## Bibliotecas externas utilizadas
-
-- RequestsLibrary
-- FakerLibrary
-- JSONLibrary
+## Bibliotecas utilizadas
+- mimesis
+- jsonschema
+- robotframework
+- robotframework-requests
+- robotframework-jsonlibrary
 
 ### Obtendo uma cópia:
 
@@ -37,10 +42,10 @@ $ git clone https://github.com/CleoCordeiro/RoboTron_CleoMaia_Compass.git
 - Abrir o terminal dentro da pasta realização
 
 Todos os testes
-- Executar no terminal: `robot -d .\reports  .\test-cases`
+- Executar no terminal: `robot -d .\reports  .\test`
 
 Testes por Tags
-- Executar no terminal: `robot -d .\reports -i "Tag" .\test-cases`
+- Executar no terminal: `robot -d .\reports -i "Tag" .\test`
 Subistitua o "Tag" pelo Tag desejada:
 ```shell
 Principais Tags
@@ -61,7 +66,7 @@ Principais Tags
 
 - Acessar o arquivo *log.html* na pasta *reports*
 
-![alt](https://raw.githubusercontent.com/CleoCordeiro/Asserts/main/Asserts/testes%20log.png)
+![alt](https://raw.githubusercontent.com/CleoCordeiro/Assets/main/Assets/testes%20log.png)
 
 
 ## Autor

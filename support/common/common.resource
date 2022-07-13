@@ -21,63 +21,9 @@ Pegar Key Do Json
 Criar Sessao
     Custom Create Session    serverest    ${BASE_URI}    verify=True
 
-GET Endpoint "${endpoint}"
-    ${response}          GET On Session      serverest             ${endpoint}    expected_status=any
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}    ${response.json()}
-
-POST Endpoint "${endpoint}" Com Body "${body}"
-    Run keyword if       '_id' in ${body}    Remove From Dictionary    ${body}        _id
-    ${response}          POST On Session     serverest                 ${endpoint}    json=${body}    expected_status=any
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}    ${response.json()}
-
-POST Autenticado EndPoint "${endpoint}" Com Body "${body}" Headers "${headers}"
-    Run keyword if       '_id' in ${body}    Remove From Dictionary    ${body}        _id
-    ${response}          POST On Session     serverest                 ${endpoint}    json=${body}    expected_status=any    headers=${headers}
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}    ${response.json()}
-
-POST EndPoint "${endpoint}" Com Body "${body}" Com Token Invalido
-    Run keyword if       '_id' in ${body}     Remove From Dictionary          ${body}        _id
-    &{header}=           Create Dictionary    Authorization=Token Invalido
-    ${response}          POST On Session      serverest                       ${endpoint}    json=${body}    expected_status=any    headers=${header}
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}     ${response.json()}
-PUT Endpoint "${endpoint}" Com Body "${body}"
-    Run keyword if       '_id' in ${body}    Remove From Dictionary    ${body}        _id
-    ${response}          PUT On Session      serverest                 ${endpoint}    json=${body}    expected_status=any    
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}    ${response.json()}
-
-PUT Autenticado EndPoint "${endpoint}" Com Body "${body}" Headers "${headers}"
-    Run keyword if       '_id' in ${body}    Remove From Dictionary    ${body}        _id
-    ${response}          PUT On Session      serverest                 ${endpoint}    json=${body}    expected_status=any    headers=${headers}
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}    ${response.json()}
-
-PUT EndPoint "${endpoint}" Com Body "${body}" Com Token Invalido
-    Run keyword if       '_id' in ${body}     Remove From Dictionary          ${body}        _id
-    &{header}=           Create Dictionary    Authorization=Token Invalido
-    ${response}          PUT On Session       serverest                       ${endpoint}    json=${body}    expected_status=any    headers=${header}
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}     ${response.json()}
-
-DELETE Endpoint "${endpoint}"
-    ${response}          DELETE On Session    serverest             ${endpoint}    expected_status=any    
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}     ${response.json()}
-
-DELETE Autenticado EndPoint "${endpoint}" Headers "${headers}"
-    ${response}          DELETE On Session    serverest             ${endpoint}    expected_status=any    headers=${headers}
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}     ${response.json()}
-
-DELETE EndPoint "${endpoint}" Com Token Invalido
-    &{header}=           Create Dictionary    Authorization=Token Invalido
-    ${response}          DELETE On Session    serverest                       ${endpoint}    expected_status=any    headers=${header}
-    Set Test Variable    ${response}
-    Set Test Variable    ${response_body}     ${response.json()}
+Lista De Todos ${item}
+    Custom On Session    GET                 ${item}
+    [Return]             ${response_body}
 
 Validar Status Code "${statuscode}"
     Should Be True    ${response.status_code} == ${statuscode}
@@ -99,3 +45,10 @@ Validar "${key}" Com O Valor "${value}"
 Validar Se A Key Nao Esta Vazia "${key}"
     Should Not Be Empty    ${response_body["${key}"]}
 
+Validar Estrutura Da Resposta "${key}"
+    Pegar Key Do Json    schema.json                  ${key}
+    validate             instance=${response_body}    schema=${${key}}
+
+Validar Tempo De Resposta ${quantidade_de_teste}
+    ${tempo_maximo_de_resposta}=    Evaluate                                                             ${tempo_maximo_por_requisição} * ${quantidade}
+    Should Be True                  ${response.elapsed.total_seconds()} < ${tempo_maximo_de_resposta}

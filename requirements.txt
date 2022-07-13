@@ -1,5 +1,5 @@
+mimesis
+jsonschema
 robotframework
 robotframework-requests
-robotframework-faker
 robotframework-jsonlibrary
-requests
