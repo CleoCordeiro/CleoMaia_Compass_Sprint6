@@ -58,7 +58,7 @@ Principais Tags
 
     Carrinhos       Executa todos os testes relacionados ao Endpoint /Carrinhos
 ```
--  Exemplo `robot -d .\reports -i Login .\test-cases`
+-  Exemplo `robot -d .\reports -i Login .\tests`
 
 - Cada Endpoint possui subtags que podem executar testes individuais
 
